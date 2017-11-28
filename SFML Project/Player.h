@@ -20,6 +20,8 @@ private:
 	sf::Keyboard:: Key rightKey;
 	sf::Keyboard::Key leftKey;
 
+
+	std::string hej = "hej";
 	
 
 
