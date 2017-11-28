@@ -17,13 +17,8 @@ private:
 	enum eDirection {STOP=0, LEFT, RIGHT};
 	eDirection direction;
 
-	sf::Keyboard:: Key rightKey;
+	sf::Keyboard::Key rightKey;
 	sf::Keyboard::Key leftKey;
-
-
-	std::string hej = "hej";
-	
-
 
 public:
 	Player(const std::string name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor);

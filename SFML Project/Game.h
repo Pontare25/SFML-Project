@@ -10,11 +10,9 @@ private:
 	std::string name;
 	int playerCap = 2;
 	int playerCount = 0;
-	Player* playerArr = new Player[playerCap];
 	int result;
-	float width = 900.0;
-	float height = 900.0;
-
+	float width = 800.0, height = 600.0;
+	Player* playerArr;
 public:
 	Game(int nrOfPlayers);
 	~Game();
@@ -22,6 +20,8 @@ public:
 	int GetNrOfPlayers()const;
 	bool GameEnded();
 	void ExpandPlayerArr();
+	float GetWidth()const;
+	float GetHeight()const;
 
 
 

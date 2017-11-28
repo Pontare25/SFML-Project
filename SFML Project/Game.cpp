@@ -6,11 +6,12 @@ Game::Game(int nrOfPlayers)
 	{
 		ExpandPlayerArr();
 	}
+	playerArr = new Player[playerCap];
 }
 
 Game::~Game()
 {
-	delete[] playerArr;
+	//delete[] playerArr;
 }
 
 void Game::AddPlayer(std::string & name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor)
@@ -34,7 +35,7 @@ bool Game::GameEnded()
 	int aliveCount;
 	for (int i = 0; i < playerCount; i++)
 	{
-		if (*(playerArr[i])->alive() == true)
+		if (playerArr[i].IsAlive() == true)
 		{
 			aliveCount++;
 		}
@@ -56,4 +57,14 @@ void Game::ExpandPlayerArr()
 	}
 	delete[] playerArr;
 	playerArr = temp;
+}
+
+float Game::GetWidth() const
+{
+	return width;
+}
+
+float Game::GetHeight() const
+{
+	return height;
 }

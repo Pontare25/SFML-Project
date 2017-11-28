@@ -16,7 +16,7 @@ private:
 	float speed;
 
 public:
-	Kurve(sf::Color playerColor);
+	Kurve(sf::Color playerColor, float width, float height);
 	~Kurve();
 	
 	void ChangeDir(float angleChange);
