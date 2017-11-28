@@ -20,6 +20,8 @@ private:
 	sf::Keyboard:: Key rightKey;
 	sf::Keyboard::Key leftKey;
 
+	
+
 
 public:
 	Player(const std::string name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor);

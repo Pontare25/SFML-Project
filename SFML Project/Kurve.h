@@ -3,13 +3,14 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "Line.h"
+#include <math.h>
+#include "Game.h"
 
 class Kurve
 {
 private:
 	sf::Color playerColor;
-	double positionX, positionY;
-	 //Bör denna ligga i player istället?
+	float positionX, positionY;
 	float angle;
 	sf::Vector2f direction;
 	float speed;
