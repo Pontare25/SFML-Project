@@ -20,7 +20,7 @@ void Game::AddPlayer(std::string & name, sf::Keyboard::Key rightKey, sf::Keyboar
 	{
 		ExpandPlayerArr();
 	}
-	playerArr[playerCount++] = { name, rightKey, leftKey, playerColor};
+	playerArr[playerCount++] = {name, rightKey, leftKey, playerColor};
 
 }
 

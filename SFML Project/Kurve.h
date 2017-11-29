@@ -5,10 +5,13 @@
 #include "Line.h"
 #include <math.h>
 #include "Game.h"
+#include <SFML\Graphics.hpp>
 
 class Kurve
 {
 private:
+	sf::Vector2f size =({5})
+	sf::CircleShape dot;
 	sf::Color playerColor;
 	float positionX, positionY;
 	float angle;
