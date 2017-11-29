@@ -22,10 +22,12 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Istate.cpp" />
     <ClCompile Include="Kurve.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Istate.h" />
     <ClInclude Include="Kurve.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Player.h" />
