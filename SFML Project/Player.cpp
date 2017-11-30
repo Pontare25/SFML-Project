@@ -1,7 +1,5 @@
 #include "Player.h"
 
-
-
 Player::Player(const std::string name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor)
 {
 	//this-> playerId = slumpad funktion som tar nya värden varje gång???
@@ -18,14 +16,27 @@ Player::Player()
 	this->name = "";
 	this->score = 0;
 	this->alive = true;
-	//this->colour = "white";
-	//this->rightKey = rightKey;
-	//this->leftKey = leftKey;
+
 }
 
 Player::~Player()
 {
 	//Empty
+}
+
+void Player::update()
+{
+	if (sf::Keyboard::isKeyPressed(leftKey))
+	{
+
+		kurve.ChangeDir();
+	}
+	if (sf::Keyboard::isKeyPressed(rightKey))
+	{
+		
+		kurve.ChangeDir();
+	}
+
 }
 
 bool Player::IsAlive()
@@ -52,6 +63,11 @@ sf::Keyboard::Key Player::GetLeftKey() const
 std::string Player::GetName() const
 {
 	return this-> name;
+}
+
+sf::Color Player::GetPlayerColor()
+{
+	return playerColor;
 }
 
 int Player::GetScore() const

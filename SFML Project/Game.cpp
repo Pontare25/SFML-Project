@@ -1,17 +1,31 @@
 #include "Game.h"
 
-Game::Game(int nrOfPlayers)
+Game::Game()
 {
-	while (playerCap < nrOfPlayers)
-	{
-		ExpandPlayerArr();
-	}
-	playerArr = new Player[playerCap];
+	roundCount = 0;
+	
+
+
 }
 
 Game::~Game()
 {
-	//delete[] playerArr;
+	
+}
+
+States Game::Update()
+{
+	
+
+
+	return States::NO_CHANGE;
+}
+
+void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
+{
+
+
+
 }
 
 void Game::AddPlayer(std::string & name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor)
@@ -40,9 +54,10 @@ bool Game::GameEnded()
 			aliveCount++;
 		}
 	}
-	if (aliveCount == (playerCount - 1)) //Dvs. en spelare kvar
+	if (aliveCount == (playerCount - 1)) //Dvs. en spelare kvar, vinnaren
 	{
 		retValue = true;
+		roundCount++;
 	}
 	return retValue;
 }
@@ -59,12 +74,4 @@ void Game::ExpandPlayerArr()
 	playerArr = temp;
 }
 
-float Game::GetWidth() const
-{
-	return width;
-}
 
-float Game::GetHeight() const
-{
-	return height;
-}

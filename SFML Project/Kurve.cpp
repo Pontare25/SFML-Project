@@ -3,14 +3,19 @@
 
 
 
-Kurve::Kurve(sf::Color playerColor, float width, float height)
+Kurve::Kurve(sf::Color playerColor)
 {
-	
+	this->dot.setRadius(5);
 	this->playerColor = playerColor;
+	dot.setFillColor(playerColor);
 	this->speed = 2.0;
 	this->direction = { cos(angle), sin(angle) };
-	this->positionX = rand() % int(width); //width from Game
-	this->positionY = rand() % int(height); //height from game
+	this->positionX = rand() % int(800) - 50; //width from Game -100 för att spelaren inte skall spawna i väggen
+	this->positionY = rand() % int(800) -50; //height from game
+}
+
+Kurve::Kurve()
+{
 }
 
 Kurve::~Kurve()

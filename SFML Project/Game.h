@@ -2,26 +2,30 @@
 #define Game_h
 #include "Player.h"
 #include <SFML/Graphics.hpp>
-
+#include "Istate.h"
 class Game
 {
 private:
-	
+	int roundCount;
 	std::string name;
 	int playerCap = 2;
 	int playerCount = 0;
 	int result;
-	float width = 800.0, height = 600.0;
+
 	Player* playerArr;
+	//sf::CircleShape dot;
+
 public:
-	Game(int nrOfPlayers);
+	Game();
 	~Game();
+	
+	States Update();
+	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+
 	void AddPlayer(std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey,sf::Color playerColor);
 	int GetNrOfPlayers()const;
 	bool GameEnded();
 	void ExpandPlayerArr();
-	float GetWidth()const;
-	float GetHeight()const;
 
 
 

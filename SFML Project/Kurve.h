@@ -10,7 +10,7 @@
 class Kurve
 {
 private:
-	sf::Vector2f size =({5})
+	sf::Vector2f size =5.0;
 	sf::CircleShape dot;
 	sf::Color playerColor;
 	float positionX, positionY;
@@ -19,7 +19,9 @@ private:
 	float speed;
 
 public:
-	Kurve(sf::Color playerColor, float width, float height);
+	void update(float deltaTime);
+	Kurve(sf::Color playerColor);
+	Kurve();
 	~Kurve();
 	
 	void ChangeDir(float angleChange);

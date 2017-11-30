@@ -14,6 +14,8 @@ private:
 	sf::Color playerColor;
 	bool alive;
 
+	Kurve kurve;
+
 	enum eDirection {STOP=0, LEFT, RIGHT};
 	eDirection direction;
 
@@ -25,12 +27,15 @@ public:
 	Player();
 	~Player();
 
+	void update();
+
 	bool IsAlive();
 	void Dead();
 
 	sf::Keyboard:: Key GetRightKey()const;
 	sf::Keyboard::Key GetLeftKey()const;
 	std::string GetName() const;
+	sf::Color GetPlayerColor();
 	int GetScore() const;
 	std::string ToString() const;
 
