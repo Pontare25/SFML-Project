@@ -26,6 +26,8 @@ public:
 	float GetSize();
 	void SetSize(float newSize);
 	void SetSpeed(float newSpeed);
+	float GetAngle();
+	void SetAngle(float newAngle);
 	
 	void move(sf::Vector2f distance)
 	{

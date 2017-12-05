@@ -16,7 +16,7 @@ private:
 public:
 	Game();
 	~Game();
-	
+	float PI = 3.1456;
 	//States Update();
 	
 	void AddPlayer(std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey,sf::Color playerColor);

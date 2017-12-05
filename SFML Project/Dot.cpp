@@ -44,3 +44,13 @@ void Dot::SetSpeed(float newSpeed)
 {
 	this->speed = newSpeed;
 }
+
+float Dot::GetAngle()
+{
+	return this->angle;
+}
+
+void Dot::SetAngle(float newAngle)
+{
+	this->angle = newAngle;
+}

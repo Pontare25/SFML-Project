@@ -62,22 +62,35 @@ void Game::ExpandPlayerArr()
 
 void Game::Update(float dt)
 {
+	//Player kanske bör hålla speed, angle, direction?
+	//I såfall behöver också size hållas av player
+	//Funderar på att ta bort piltangenter från Dot också då de inte behövs där?
 
 	//Här skall avståndet avgöras för playerArr. for loop
 	sf::Vector2f distance;
 
-	//
-	//
-	//
+	for (int i = 0; i < playerCount; i++)
+	{
+		if (playerArr[i]->GetAngle() > 360)
+		{
+			//angle -=360;
+		}
+		if (sf::Keyboard::isKeyPressed(playerArr[i]->GetRightKey()))
+		{
+			angle -= moveSpeed*dt*PI / 180.0f;
+		}
+		if (sf::Keyboard::isKeyPressed(playerArr[i]->GetRightKey()))
+		{
+			angle += moveSpeed*dt*PI / 180.0f;
+		}
+		
+		sf::Vector2f direction(cos(angle), sin(angle));
+		float factor = moveSpeed*dt;
+		distance = (sin(angle)*factor, cos(angle)*factor);
 
 
 
-	//
-	//
+		playerArr[i]->update(dt, distance);
+	}
 
-
-
-
-
-	playerArr[0]->update(dt, distance);
 }
