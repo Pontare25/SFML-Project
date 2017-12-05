@@ -2,8 +2,7 @@
 #define Player_h
 #include <string>
 #include <SFML\Graphics.hpp>
-#include "Kurve.h"
-#include "Line.h"
+
 
 class Player
 {
@@ -13,11 +12,6 @@ private:
 	int score;
 	sf::Color playerColor;
 	bool alive;
-
-	Kurve kurve;
-
-	enum eDirection {STOP=0, LEFT, RIGHT};
-	eDirection direction;
 
 	sf::Keyboard::Key rightKey;
 	sf::Keyboard::Key leftKey;
