@@ -16,18 +16,17 @@ private:
 
 	sf::Keyboard::Key rightKey;
 	sf::Keyboard::Key leftKey;
+	Dot playerDot;
 
 public:
 	Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor);
 
-	Player(); //OBS Helt tom
-
 	~Player();
 
-	void update();
+	void update(float dt, sf::Vector2f distance);
 
 	bool IsAlive();
-	void Dead();
+	void Kill();
 
 	sf::Keyboard:: Key GetRightKey()const;
 	sf::Keyboard::Key GetLeftKey()const;

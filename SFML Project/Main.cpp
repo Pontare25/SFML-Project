@@ -16,8 +16,10 @@ int main()
 	srand(time(0));
 	Game game1;
 	
-	string name = "Pontus";
-	game1.AddPlayer(name, sf::Keyboard::Right, sf::Keyboard::Left, sf::Color::Red);
+	string name1 = "Pontus";
+	game1.AddPlayer(name1, sf::Keyboard::Right, sf::Keyboard::Left, sf::Color::Red);
+	string name2 = "Jim";
+	game1.AddPlayer(name2, sf::Keyboard::D, sf::Keyboard::A, sf::Color::Green);
 
 	while (window.isOpen())
 	{

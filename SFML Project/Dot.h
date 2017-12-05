@@ -9,6 +9,7 @@ private:
 	float size;
 	float speed;
 	float angle;
+	float PI = 3.145;
 	sf::Vector2f position;
 	sf::CircleShape dot;
 	sf::Vector2f direction;
@@ -31,9 +32,9 @@ public:
 		dot.move(distance);
 	}
 	
-	void DrawTo(sf::RenderWindow &window)
+	void Draw()
 	{
-		window.draw(dot);
+		
 	}
 };
 

@@ -11,7 +11,7 @@ private:
 	int playerCap;
 	int playerCount;
 
-	Player* playerArr;
+	Player** playerArr;
 
 public:
 	Game();
@@ -24,8 +24,8 @@ public:
 	bool RoundEnded();
 	void ExpandPlayerArr();
 
-	void Update();
-	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+	void Update(float dt);
+	void Draw()const;
 
 };
 #endif // !Game_h

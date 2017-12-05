@@ -1,6 +1,7 @@
 #include "Player.h"
 
 Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor)
+	: playerDot(1200.0, 900.0, playerColor, rightKey, leftKey)
 {
 	this->name = name; 
 	this->rightKey = rightKey;
@@ -8,12 +9,6 @@ Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard
 	this->playerColor = playerColor;
 	this->score = 0;
 	this->alive = true;
-
-	Dot playerDot(1200.0, 900.0, playerColor, rightKey, leftKey);
-}
-
-Player::Player()
-{
 }
 
 Player::~Player()
@@ -21,17 +16,21 @@ Player::~Player()
 	//Empty
 }
 
-void Player::update()
+void Player::update(float dt, sf::Vector2f distance)
 {
-	//playerDot.DrawTo(window); // Behövs Update i playerklassen?
+	playerDot.move(distance);
 }
+
+
+
+
 
 bool Player::IsAlive()
 {
 	return alive;
 }
 
-void Player::Dead()
+void Player::Kill()
 {
 	alive = false;
 }

@@ -5,13 +5,15 @@ Game::Game()
 	this->playerCap = 2;
 	this->playerCount = 0;
 	this->roundCount = 1;
-
-	playerArr = new Player[playerCap];
-
+	playerArr = new Player*[playerCap];
 }
 
 Game::~Game()
 {
+	for (int i = 0; i < playerCount; i++)
+	{
+		delete playerArr[i];
+	}
 	delete[] playerArr;
 }
 
@@ -21,8 +23,8 @@ void Game::AddPlayer(std::string & name, sf::Keyboard::Key rightKey, sf::Keyboar
 	{
 		ExpandPlayerArr();
 	}
-	Player toAdd(name, rightKey, leftKey, playerColor);
-	playerArr[playerCount] = toAdd;
+	
+	playerArr[playerCount] = new Player(name, rightKey, leftKey, playerColor);
 	playerCount++;
 }
 
@@ -36,7 +38,7 @@ bool Game::RoundEnded()
 	int deathCounter = 0;
 	for (int i = 0; i < playerCount; i++)
 	{
-		if (playerArr[i].IsAlive() == false)
+		if (playerArr[i]->IsAlive() == false)
 		{
 			deathCounter++;
 		}
@@ -49,11 +51,33 @@ bool Game::RoundEnded()
 void Game::ExpandPlayerArr()
 {
 	playerCap = playerCap + 2;
-	Player* temp = new Player[playerCap];
+	Player** temp = new Player*[playerCap];
 	for (int i = 0; i < playerCount; i++)
 	{
 		temp[i] = playerArr[i];
 	}
 	delete[] playerArr;
 	playerArr = temp;
+}
+
+void Game::Update(float dt)
+{
+
+	//Här skall avståndet avgöras för playerArr. for loop
+	sf::Vector2f distance;
+
+	//
+	//
+	//
+
+
+
+	//
+	//
+
+
+
+
+
+	playerArr[0]->update(dt, distance);
 }
