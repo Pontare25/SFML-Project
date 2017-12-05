@@ -5,16 +5,16 @@
 #include <ctime>
 
 using namespace std;
-sf::Clock clock;
+
 
 int main()
 {
+	sf::Clock clock;
 	sf::RenderWindow window(sf::VideoMode(800, 800), "Achtung");
 
 	while (window.isOpen())
 	{
-		//float deltaTime = clock.restart().asSeconds();
-
+		float deltaTime = clock.restart().asSeconds();
 
 		cout << "Welcome to Achtung Die Kurve!\nHow many players? (2 minimum)";
 		int nrOfPlayers;
@@ -45,29 +45,6 @@ int main()
 		achtung1.AddPlayer(name2, rightKey2, leftKey2, playerColor2);
 
 	}
-
-
-
-
-
-	/*sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.clear();
-		window.draw(shape);
-		window.display();
-	}*/
-
 	cin.get();
 	return 0;
 }
