@@ -3,7 +3,6 @@
 #include "SFML\Graphics.hpp"
 #include "math.h"
 
-
 class Dot
 {
 private:
@@ -14,9 +13,11 @@ private:
 	sf::CircleShape dot;
 	sf::Vector2f direction;
 	sf::Vector2f windowSize;
+	sf::Keyboard::Key rightKey;
+	sf::Keyboard::Key leftKey;
 
 public:
-	Dot(float width, float height, sf:: Color playerColor);
+	Dot(float width, float height, sf:: Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey);
 
 	void SetPosition(sf::Vector2f newPosition, float angle=0);
 	sf::Vector2f GetPosition();
@@ -24,8 +25,7 @@ public:
 	float GetSize();
 	void SetSize(float newSize);
 	void SetSpeed(float newSpeed);
-	void SetAngle(float newAngle);
-
+	
 	void move(sf::Vector2f distance)
 	{
 		dot.move(distance);

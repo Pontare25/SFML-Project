@@ -1,6 +1,7 @@
 #ifndef Player_h
 #define Player_h
 #include <string>
+#include "Dot.h"
 #include <SFML\Graphics.hpp>
 
 
@@ -17,8 +18,10 @@ private:
 	sf::Keyboard::Key leftKey;
 
 public:
-	Player(const std::string name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor);
-	Player();
+	Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor);
+
+	Player(); //OBS Helt tom
+
 	~Player();
 
 	void update();

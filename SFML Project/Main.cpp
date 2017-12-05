@@ -12,11 +12,12 @@ using namespace std;
 int main()
 {
 	sf::Clock clock;
-	sf::RenderWindow window(sf::VideoMode(800, 800), "Achtung");
+	sf::RenderWindow window(sf::VideoMode(1200, 900), "Achtung");
 	srand(time(0));
 	Game game1;
-
-	cout << "TEst";
+	
+	string name = "Pontus";
+	game1.AddPlayer(name, sf::Keyboard::Right, sf::Keyboard::Left, sf::Color::Red);
 
 	while (window.isOpen())
 	{
@@ -25,7 +26,9 @@ int main()
 		
 
 		window.clear();
-		
+		//Draw funktioner
+
+
 		window.display();
 
 	}
