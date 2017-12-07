@@ -2,6 +2,7 @@
 #define Dot_h
 #include "SFML\Graphics.hpp"
 #include "math.h"
+#include "Kurve.h"
 
 class Dot : public sf::Drawable
 {
@@ -33,16 +34,8 @@ public:
 	void SetAngle(float newAngle);
 
 	void Update(float dt);
-	
-	void move(sf::Vector2f distance)
-	{
-		dot.move(distance);
-	}
-	
-	void Draw()
-	{
-
-	}
+	void move(sf::Vector2f distance);
+	void Draw();
 };
 
 

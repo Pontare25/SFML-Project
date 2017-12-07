@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
 	sf::Clock clock;
-	sf::RenderWindow window(sf::VideoMode(1200, 900), "Achtung");
+	sf::RenderWindow window(sf::VideoMode(1200, 900), "Achtung Die Kurve");
 	srand(time(0));
 	Game game1;
 	
@@ -25,10 +25,10 @@ int main()
 	{
 		float dt = clock.restart().asSeconds();
 
-		
+
 
 		window.clear();
-		//Draw funktioner
+		game1.Update(dt);
 		window.draw(game1);
 
 		window.display();

@@ -75,7 +75,7 @@ void Game::ExpandPlayerArr()
 
 void Game::NewRound()
 {
-	//Nya positioner skall slumpas, isalive skall sättas till true
+	//Nya positioner och vinklar skall slumpas
 	for (int i = 0; i < playerCount; i++)
 	{
 		playerArr[i]->Resurrect();

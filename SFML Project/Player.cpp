@@ -12,6 +12,8 @@ Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard
 	this->playerColor = playerColor;
 	this->score = 0;
 	this->alive = true;
+	sf::Vector2f position = { float(rand() % int(1200.0)), float(rand() % int(900.0)) };
+	playerDot.SetPosition(position, float(rand()%360));
 }
 
 Player::~Player()
@@ -22,6 +24,8 @@ Player::~Player()
 void Player::update(float dt)
 {
 	playerDot.Update(dt);
+
+	
 }
 
 bool Player::IsAlive()
@@ -32,11 +36,15 @@ bool Player::IsAlive()
 void Player::Kill()
 {
 	alive = false;
+	playerDot.SetSpeed(0.0f);
 }
 
 void Player::Resurrect()
 {
 	alive = true;
+	sf::Vector2f position = { float(rand() % int(1200.0)), float(rand() % int(900.0))}; //slumpar fram en ny position
+	playerDot.SetPosition(position, float(rand() % 360)); //sätter positionen och slumpar en ny vinkel
+	playerDot.SetSpeed(0.01f);
 }
 
 void Player::AddScore()

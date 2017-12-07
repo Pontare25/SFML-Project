@@ -28,8 +28,6 @@ public:
 	void Resurrect(); //Resets alive when a ew round begins (also possibly for potential powerup like extra life)
 	void AddScore();
 
-	sf::Keyboard:: Key GetRightKey()const;
-	sf::Keyboard::Key GetLeftKey()const;
 	std::string GetName() const;
 	sf::Color GetPlayerColor();
 	int GetScore() const;

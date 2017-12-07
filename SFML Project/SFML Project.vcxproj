@@ -27,6 +27,7 @@
   <ItemGroup>
     <ClInclude Include="Dot.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Kurve.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
