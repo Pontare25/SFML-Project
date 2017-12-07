@@ -1,11 +1,14 @@
 #include "Player.h"
 
+void Player::draw(sf::RenderTarget & t, sf::RenderStates s) const
+{
+	t.draw(playerDot);
+}
+
 Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor)
-	: playerDot(1200.0, 900.0, playerColor, rightKey, leftKey)
+	: playerDot(1200.0, 900.0, playerColor, rightKey,leftKey)
 {
 	this->name = name; 
-	this->rightKey = rightKey;
-	this->leftKey = leftKey;
 	this->playerColor = playerColor;
 	this->score = 0;
 	this->alive = true;
@@ -16,14 +19,10 @@ Player::~Player()
 	//Empty
 }
 
-void Player::update(float dt, sf::Vector2f distance)
+void Player::update(float dt)
 {
-	playerDot.move(distance);
+	playerDot.Update(dt);
 }
-
-
-
-
 
 bool Player::IsAlive()
 {
@@ -35,14 +34,14 @@ void Player::Kill()
 	alive = false;
 }
 
-sf::Keyboard::Key Player::GetRightKey() const
+void Player::Resurrect()
 {
-	return this-> rightKey;
+	alive = true;
 }
 
-sf::Keyboard::Key Player::GetLeftKey() const
+void Player::AddScore()
 {
-	return this-> leftKey;
+	score++;
 }
 
 std::string Player::GetName() const
@@ -64,8 +63,8 @@ std::string Player::ToString() const
 {
 	std::string retString;
 	retString += "Name:\t" + name + "\n";
-	/*retString += "Color:\t" + to_string(playerColor) + "\n";
-	retString += "Score:\t" + to_string(score) + "\n";*/
+	//retString += "Color:\t" + std:: to_string(playerColor) + "\n";
+	retString += "Score:\t" + std:: to_string(score) + "\n";
 	
 	return retString;
 }

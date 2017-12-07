@@ -29,7 +29,7 @@ int main()
 
 		window.clear();
 		//Draw funktioner
-
+		window.draw(game1);
 
 		window.display();
 

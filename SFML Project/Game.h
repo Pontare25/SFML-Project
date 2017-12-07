@@ -4,12 +4,14 @@
 //#include "Dot.h"
 #include <SFML/Graphics.hpp>
 
-class Game
+class Game: public sf::Drawable
 {
 private:
 	int roundCount;
 	int playerCap;
 	int playerCount;
+
+	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 
 	Player** playerArr;
 
@@ -23,9 +25,11 @@ public:
 	int GetNrOfPlayers()const;
 	bool RoundEnded();
 	void ExpandPlayerArr();
+	void NewRound();
+	int WinnerIndex();
+
 
 	void Update(float dt);
-	void Draw()const;
 
 };
 #endif // !Game_h

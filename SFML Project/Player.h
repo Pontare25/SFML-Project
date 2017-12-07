@@ -5,17 +5,15 @@
 #include <SFML\Graphics.hpp>
 
 
-class Player
+class Player : public sf::Drawable
 {
-private:
-	//int playerId //nödvändig??
+private: 
 	std::string name;
 	int score;
 	sf::Color playerColor;
 	bool alive;
-
-	sf::Keyboard::Key rightKey;
-	sf::Keyboard::Key leftKey;
+	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
+	
 	Dot playerDot;
 
 public:
@@ -23,10 +21,12 @@ public:
 
 	~Player();
 
-	void update(float dt, sf::Vector2f distance);
+	void update(float dt);
 
 	bool IsAlive();
-	void Kill();
+	void Kill(); //Called upon when a player hits a wall or kurve
+	void Resurrect(); //Resets alive when a ew round begins (also possibly for potential powerup like extra life)
+	void AddScore();
 
 	sf::Keyboard:: Key GetRightKey()const;
 	sf::Keyboard::Key GetLeftKey()const;

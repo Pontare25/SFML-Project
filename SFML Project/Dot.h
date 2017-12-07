@@ -3,7 +3,7 @@
 #include "SFML\Graphics.hpp"
 #include "math.h"
 
-class Dot
+class Dot : public sf::Drawable
 {
 private:
 	float size;
@@ -17,8 +17,11 @@ private:
 	sf::Keyboard::Key rightKey;
 	sf::Keyboard::Key leftKey;
 
+	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
+
+
 public:
-	Dot(float width, float height, sf:: Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey);
+	Dot(float width, float height, sf:: Color playerColor, sf::Keyboard::Key rightKey,sf::Keyboard::Key leftKey);
 
 	void SetPosition(sf::Vector2f newPosition, float angle=0);
 	sf::Vector2f GetPosition();
@@ -28,6 +31,8 @@ public:
 	void SetSpeed(float newSpeed);
 	float GetAngle();
 	void SetAngle(float newAngle);
+
+	void Update(float dt);
 	
 	void move(sf::Vector2f distance)
 	{
@@ -36,7 +41,7 @@ public:
 	
 	void Draw()
 	{
-		
+
 	}
 };
 
