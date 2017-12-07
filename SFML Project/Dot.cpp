@@ -7,6 +7,7 @@ void Dot::draw(sf::RenderTarget & t, sf::RenderStates s) const
 }
 
 Dot::Dot(float width, float height, sf::Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey)
+	:kurve (playerColor, GetSize(), GetPosition(), GetDirection())
 {
 	this->rightKey = rightKey;
 	this->leftKey = leftKey;
@@ -78,6 +79,8 @@ void Dot::Update(float dt)
 
 	direction = { sin(angle)*speed, cos(angle)*speed };
 	dot.move(direction*factor);
+
+	kurve.Update(dt, GetPosition());
 }
 
 void Dot::move(sf::Vector2f distance)

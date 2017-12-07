@@ -17,6 +17,7 @@ private:
 	sf::Vector2f windowSize;
 	sf::Keyboard::Key rightKey;
 	sf::Keyboard::Key leftKey;
+	Kurve kurve;
 
 	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 

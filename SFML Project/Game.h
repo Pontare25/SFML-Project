@@ -27,9 +27,8 @@ public:
 	void ExpandPlayerArr();
 	void NewRound();
 	int WinnerIndex();
-
-
 	void Update(float dt);
+	bool checkCollision();
 
 };
 #endif // !Game_h

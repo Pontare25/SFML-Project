@@ -5,17 +5,24 @@
 class Kurve : public sf::Drawable
 {
 private:
-	int nrOfLinePoints;
-	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
+	
+	sf::Color playerColor;
+	float size;
+	
+	sf::VertexArray vArray;
+
 
 public:
+	Kurve(sf::Color playerColor, float dotSize, sf::Vector2f originPoint, sf::Vector2f direction);
+	~Kurve();
+	void SetPosition(sf::Vector2f position);
+	static float VectorLength(sf::Vector2f v);
+
 	
 
-	Kurve(sf::Color playerColor, sf::Vector2f direction, float dotSize, sf::Vector2f originPoint);
-	~Kurve();
 
-	void Update(sf::Vector2f position);
-	void Draw();
+	void Update(float dt, sf::Vector2f position);
+	void draw(sf::RenderTarget & target, sf::RenderStates states) const;
 
  };
 

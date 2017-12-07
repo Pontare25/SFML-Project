@@ -21,14 +21,17 @@
   <ItemGroup>
     <ClCompile Include="Dot.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Kurve.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Squiggly.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dot.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Kurve.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Squiggly.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7D3B8F1F-FCC2-49DE-BEA0-52B41B108AA3}</ProjectGuid>

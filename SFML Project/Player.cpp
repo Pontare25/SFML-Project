@@ -42,7 +42,7 @@ void Player::Kill()
 void Player::Resurrect()
 {
 	alive = true;
-	sf::Vector2f position = { float(rand() % int(1200.0)), float(rand() % int(900.0))}; //slumpar fram en ny position
+	sf::Vector2f position = { float(rand() % int(1000.0)+100), float(rand() % int(700.0)+50)}; //slumpar fram en ny position
 	playerDot.SetPosition(position, float(rand() % 360)); //sätter positionen och slumpar en ny vinkel
 	playerDot.SetSpeed(0.01f);
 }
