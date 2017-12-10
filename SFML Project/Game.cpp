@@ -79,6 +79,7 @@ void Game::NewRound()
 	for (int i = 0; i < playerCount; i++)
 	{
 		playerArr[i]->Resurrect();
+		
 		/////
 
 

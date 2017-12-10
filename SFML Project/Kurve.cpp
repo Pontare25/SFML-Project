@@ -1,5 +1,10 @@
 #include "Kurve.h"
 
+void Kurve::draw(sf::RenderTarget & t, sf::RenderStates s) const
+{
+	t.draw(vArray);
+}
+
 Kurve::Kurve(sf::Color playerColor, float dotSize, sf::Vector2f originPoint, sf::Vector2f direction)
 {
 	this->playerColor = playerColor;
@@ -18,7 +23,7 @@ Kurve::~Kurve()
 
 float Kurve::VectorLength(sf::Vector2f v)
 {
-	return sqrt(v.x*v.x + v.y*v.y); //Pyt sats för längden av vektorn
+	return sqrt(v.x*v.x + v.y*v.y); //Pytaghoras sats för längden av vektorn
 }
 
 void Kurve::Update(float dt, sf::Vector2f position)
@@ -38,7 +43,8 @@ void Kurve::Update(float dt, sf::Vector2f position)
 	
 }
 
-void Kurve::draw(sf::RenderTarget & target, sf::RenderStates states) const
+void Kurve::draw()
 {
-	target.draw(vArray);
 }
+
+

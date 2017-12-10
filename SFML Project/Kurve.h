@@ -11,6 +11,8 @@ private:
 	
 	sf::VertexArray vArray;
 
+	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
+
 
 public:
 	Kurve(sf::Color playerColor, float dotSize, sf::Vector2f originPoint, sf::Vector2f direction);
@@ -22,7 +24,7 @@ public:
 
 
 	void Update(float dt, sf::Vector2f position);
-	void draw(sf::RenderTarget & target, sf::RenderStates states) const;
+	void draw();
 
  };
 
