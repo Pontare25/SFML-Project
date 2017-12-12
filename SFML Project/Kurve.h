@@ -11,13 +11,16 @@ private:
 	
 	sf::VertexArray vArray;
 
+	sf::Vector2f direction;
+
 	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 
 
 public:
 	Kurve(sf::Color playerColor, float dotSize, sf::Vector2f originPoint, sf::Vector2f direction);
+	Kurve();
 	~Kurve();
-	void SetPosition(sf::Vector2f position);
+	//void SetPosition(sf::Vector2f position);
 	static float VectorLength(sf::Vector2f v);
 
 	

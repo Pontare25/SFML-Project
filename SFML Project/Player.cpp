@@ -14,6 +14,8 @@ Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard
 	this->alive = true;
 	sf::Vector2f position = { float(rand() % int(1200.0)), float(rand() % int(900.0)) };
 	playerDot.SetPosition(position, float(rand()%360));
+
+	bounds.setScale(1200.0f, 900.0f);
 }
 
 Player::~Player()
@@ -24,8 +26,6 @@ Player::~Player()
 void Player::update(float dt)
 {
 	playerDot.Update(dt);
-
-	
 }
 
 bool Player::IsAlive()
@@ -76,3 +76,16 @@ std::string Player::ToString() const
 	
 	return retString;
 }
+
+bool Player::checkCollision()
+{
+	/*bool retValue = false;
+	
+		if (bounds.getGlobalBounds().intersects(playerDot))
+		{
+			retValue = true;
+			Kill();
+		}
+	return retValue;*/
+	return true;
+} 

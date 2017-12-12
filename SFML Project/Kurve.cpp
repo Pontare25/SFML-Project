@@ -9,16 +9,22 @@ Kurve::Kurve(sf::Color playerColor, float dotSize, sf::Vector2f originPoint, sf:
 {
 	this->playerColor = playerColor;
 	this->size = dotSize;
+	this->direction = direction;
 	sf::Vertex v;
 	v.color = playerColor;
 	v.position = { originPoint };
 	vArray.append(v);
 	v.position = { originPoint };
 	vArray.append(v);
+	vArray.setPrimitiveType(sf::PrimitiveType::LinesStrip);
+}
+
+Kurve::Kurve()
+{
 }
 
 Kurve::~Kurve()
-{
+{ 
 }
 
 float Kurve::VectorLength(sf::Vector2f v)
@@ -36,11 +42,8 @@ void Kurve::Update(float dt, sf::Vector2f position)
 			vArray.append(newVertex);
 		}
 	}
-
-	sf::Vector2f tailMovement = vArray[1].position - vArray[0].position;
-	tailMovement /= VectorLength(tailMovement);
-	vArray[0].position += tailMovement * dt * 100.0f;
 	
+	vArray[vArray.getVertexCount() - 1].position = position;
 }
 
 void Kurve::draw()

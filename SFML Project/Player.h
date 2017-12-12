@@ -15,6 +15,7 @@ private:
 	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 	
 	Dot playerDot;
+	sf::RectangleShape bounds;
 
 public:
 	Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor);
@@ -32,6 +33,8 @@ public:
 	sf::Color GetPlayerColor();
 	int GetScore() const;
 	std::string ToString() const;
+
+	bool checkCollision();
 
 };
 

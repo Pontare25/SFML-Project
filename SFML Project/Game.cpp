@@ -14,6 +14,7 @@ Game::Game()
 	this->playerCount = 0;
 	this->roundCount = 1;
 	playerArr = new Player*[playerCap];
+	
 }
 
 Game::~Game()

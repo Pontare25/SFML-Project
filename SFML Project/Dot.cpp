@@ -4,10 +4,10 @@
 void Dot::draw(sf::RenderTarget & t, sf::RenderStates s) const
 {
 	t.draw(dot);
+	t.draw(kurve);
 }
 
-Dot::Dot(float width, float height, sf::Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey)
-	:kurve (playerColor, GetSize(), GetPosition(), GetDirection())
+Dot::Dot(float width, float height, sf::Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey)	
 {
 	this->rightKey = rightKey;
 	this->leftKey = leftKey;
@@ -18,6 +18,7 @@ Dot::Dot(float width, float height, sf::Color playerColor, sf::Keyboard::Key rig
 	dot.setFillColor(playerColor);
 	dot.setRadius(size);
 	windowSize = { width, height };
+	kurve = Kurve(playerColor, GetSize(), dot.getPosition(), GetDirection());
 }
 
 void Dot::SetPosition(sf::Vector2f newPosition, float angle)
@@ -80,7 +81,7 @@ void Dot::Update(float dt)
 	direction = { sin(angle)*speed, cos(angle)*speed };
 	dot.move(direction*factor);
 
-	kurve.Update(dt, GetPosition());
+	kurve.Update(dt, dot.getPosition());
 }
 
 void Dot::move(sf::Vector2f distance)
