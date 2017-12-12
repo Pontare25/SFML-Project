@@ -3,6 +3,7 @@
 void Player::draw(sf::RenderTarget & t, sf::RenderStates s) const
 {
 	t.draw(playerDot);
+	t.draw(bounds);
 }
 
 Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor)
@@ -16,6 +17,8 @@ Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard
 	playerDot.SetPosition(position, float(rand()%360));
 
 	bounds.setScale(1200.0f, 900.0f);
+	bounds.setPosition(600, 450);
+	bounds.setFillColor(sf::Color::Green);
 }
 
 Player::~Player()
@@ -25,6 +28,7 @@ Player::~Player()
 
 void Player::update(float dt)
 {
+	checkCollision();
 	playerDot.Update(dt);
 }
 
@@ -79,13 +83,33 @@ std::string Player::ToString() const
 
 bool Player::checkCollision()
 {
-	/*bool retValue = false;
+	bool retValue = false;
 	
-		if (bounds.getGlobalBounds().intersects(playerDot))
+	sf::Vector2f rightXX(1200.0f, 0.0f);
+	sf::Vector2f leftXX(0.0f, 0.0f);
+	sf::Vector2f upperYY(0.0f, 900.0f);
+	sf::Vector2f lowerYY(0.0f, 0.0f);
+
+
+	float rightX(1200.0f);
+	float leftX(0.0f);
+	float upperY(900.0f);
+	float lowerY(0.0f);
+
+	//if (playerDot.GetPosition() >= rightXX || playerDot.GetPosition() <= leftXX || playerDot.GetPosition() >= upperYY || playerDot.GetPosition() <= lowerYY)
+	//if (playerDot.GetPosition().x >= rightX || playerDot.GetPosition().x <= leftX || playerDot.GetPosition().y >= upperY || playerDot.GetPosition().y <= lowerY)
+	if(playerDot.GetPosition().x >= rightXX.x || playerDot.GetPosition().x <= leftXX.x || playerDot.GetPosition().y >= upperYY.y || playerDot.GetPosition().y <= lowerYY.y)
+	{
+		Kill();
+		retValue = true;
+	}
+
+
+	 
+		/*if (playerDot.CheckBounds(bounds) == true)
 		{
 			retValue = true;
 			Kill();
-		}
-	return retValue;*/
-	return true;
+		}*/
+	return retValue;
 } 

@@ -29,7 +29,7 @@ void Dot::SetPosition(sf::Vector2f newPosition, float angle)
 
 sf::Vector2f Dot::GetPosition()
 {
-	return this-> position;
+	return this-> position; // Returnerar fel position????
 }
 
 sf::Vector2f Dot::GetDirection()
@@ -47,6 +47,11 @@ void Dot::SetSize(float newSize)
 	this->size = newSize;
 }
 
+float Dot::GetSpeed()
+{
+	return this-> speed;
+}
+
 void Dot::SetSpeed(float newSpeed)
 {
 	this->speed = newSpeed;
@@ -60,6 +65,11 @@ float Dot::GetAngle()
 void Dot::SetAngle(float newAngle)
 {
 	this->angle = newAngle;
+}
+
+bool Dot::CheckBounds(sf::RectangleShape & bounds)
+{
+	return (dot.getGlobalBounds().intersects(bounds.getGlobalBounds()));
 }
 
 void Dot::Update(float dt)
@@ -76,7 +86,7 @@ void Dot::Update(float dt)
 	{
 		angle += speed*dt*PI*20 / 180.0f;
 	}
-	float factor = speed*dt;
+	float factor = GetSpeed()*dt;
 
 	direction = { sin(angle)*speed, cos(angle)*speed };
 	dot.move(direction*factor);

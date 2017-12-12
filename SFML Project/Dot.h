@@ -30,9 +30,11 @@ public:
 	sf::Vector2f GetDirection();
 	float GetSize();
 	void SetSize(float newSize);
+	float GetSpeed();
 	void SetSpeed(float newSpeed);
 	float GetAngle();
 	void SetAngle(float newAngle);
+	bool CheckBounds(sf::RectangleShape& bounds);
 
 	void Update(float dt);
 	void move(sf::Vector2f distance);
