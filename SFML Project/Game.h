@@ -14,6 +14,11 @@ private:
 	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 
 	Player** playerArr;
+	sf::Text title;
+	sf::Text pressSpace;
+	sf::Font font;
+	sf::Text roundText;
+
 
 public:
 	Game();
@@ -28,6 +33,7 @@ public:
 	void ExpandPlayerArr();
 	void NewRound();
 	int WinnerIndex();
+	bool PausSegment();
 
 	void Update(float dt);
 	

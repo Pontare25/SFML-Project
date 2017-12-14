@@ -1,11 +1,13 @@
 #include "Game.h"
 
 void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
-{
+{ 
+		t.draw(title);
+		//t.draw(PausSegment);
 	for (int i = 0; i < playerCount; i++)
 	{
 		t.draw(*playerArr[i]);
-	}
+	}	
 }
 
 Game::Game()
@@ -14,6 +16,26 @@ Game::Game()
 	this->playerCount = 0;
 	this->roundCount = 1;
 	playerArr = new Player*[playerCap];
+
+	
+	if (!font.loadFromFile("arial.ttf"))
+	{
+		//std::cout << "Failure to load text\n";
+	}
+	title.setFont(font);
+	title.setString("Welcome to Achtung Die Kurve");
+	title.setCharacterSize(24);
+	title.setColor(sf::Color::Red);
+	title.setPosition(600.0f, 450.0f);
+	title.setStyle(sf::Text::Bold);
+
+	pressSpace.setFont(font);
+	pressSpace.setString("Press Space to continue");
+	pressSpace.setCharacterSize(42);
+	pressSpace.setColor(sf::Color::White);
+	pressSpace.setPosition(600.0f, 900.0f);
+
+
 	
 }
 
@@ -51,13 +73,15 @@ bool Game::RoundEnded()
 		if (playerArr[i]->IsAlive() == false)
 		{
 			deathCounter++;
+		}
+		else 
+		{
 			aliveIndex = i;
 		}
 	}
-	if (playerCount == (deathCounter - 1))
+	if (deathCounter == (playerCount-1))
 	{
 		playerArr[aliveIndex]->AddScore(); //Adds score to the winner
-		roundCount++;
 	}
 	return playerCount == (deathCounter - 1);
 }
@@ -76,19 +100,11 @@ void Game::ExpandPlayerArr()
 
 void Game::NewRound()
 {
-	//Nya positioner och vinklar skall slumpas
+	roundCount++;
 	for (int i = 0; i < playerCount; i++)
 	{
-		playerArr[i]->Resurrect();
-		
-		/////
-
-
-		/////
-
+		playerArr[i]->Resurrect(); 	//alive = true, nya positioner och vinklar slumpas
 	}
-
-
 }
 
 int Game::WinnerIndex()
@@ -106,10 +122,31 @@ int Game::WinnerIndex()
 	return winnerIndex;
 }
 
+bool Game::PausSegment()
+{
+	bool retValue = false;
+	if (sf::Keyboard::isKeyPressed(sf:: Keyboard:: Space))
+	{
+		retValue = true;
+	}
+	return retValue;
+}
+
 void Game::Update(float dt)
 {
-	for (int i = 0; i < playerCount; i++)
+	if (RoundEnded() == false)
 	{
-		playerArr[i]->update(dt);
+		for (int i = 0; i < playerCount; i++)
+		{
+			playerArr[i]->update(dt);
+		}
+	}
+	else
+	{
+		//draw(pressSpace);
+
+		//Någon pausruta. typ, "To start next round press space."
+		NewRound(); // Resurrects every player, randomizes new positions and angles
+
 	}
 }

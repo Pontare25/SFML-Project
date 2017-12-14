@@ -48,7 +48,7 @@ void Player::Resurrect()
 	alive = true;
 	sf::Vector2f position = { float(rand() % int(1000.0)+100), float(rand() % int(700.0)+50)}; //slumpar fram en ny position
 	playerDot.SetPosition(position, float(rand() % 360)); //sätter positionen och slumpar en ny vinkel
-	playerDot.SetSpeed(0.01f);
+	playerDot.SetSpeed(10.0f);
 }
 
 void Player::AddScore()
@@ -85,28 +85,19 @@ bool Player::checkCollision()
 {
 	bool retValue = false;
 	
-	sf::Vector2f rightXX(1200.0f, 0.0f);
-	sf::Vector2f leftXX(0.0f, 0.0f);
-	sf::Vector2f upperYY(0.0f, 900.0f);
-	sf::Vector2f lowerYY(0.0f, 0.0f);
+	sf::Vector2f rightX(1200.0f, 0.0f);
+	sf::Vector2f leftX(0.0f, 0.0f);
+	sf::Vector2f upperY(0.0f, 900.0f);
+	sf::Vector2f lowerY(0.0f, 0.0f);
 
-
-	float rightX(1200.0f);
-	float leftX(0.0f);
-	float upperY(900.0f);
-	float lowerY(0.0f);
-
-	//if (playerDot.GetPosition() >= rightXX || playerDot.GetPosition() <= leftXX || playerDot.GetPosition() >= upperYY || playerDot.GetPosition() <= lowerYY)
-	//if (playerDot.GetPosition().x >= rightX || playerDot.GetPosition().x <= leftX || playerDot.GetPosition().y >= upperY || playerDot.GetPosition().y <= lowerY)
-	if(playerDot.GetPosition().x >= rightXX.x || playerDot.GetPosition().x <= leftXX.x || playerDot.GetPosition().y >= upperYY.y || playerDot.GetPosition().y <= lowerYY.y)
+	if(playerDot.GetPosition().x >= rightX.x || playerDot.GetPosition().x <= leftX.x || playerDot.GetPosition().y >= upperY.y || playerDot.GetPosition().y <= lowerY.y)
 	{
 		Kill();
 		retValue = true;
 	}
 
 
-	 
-		/*if (playerDot.CheckBounds(bounds) == true)
+	/*	if (playerDot.CheckBounds(bounds) == true)
 		{
 			retValue = true;
 			Kill();

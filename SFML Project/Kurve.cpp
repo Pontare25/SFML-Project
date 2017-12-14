@@ -12,9 +12,9 @@ Kurve::Kurve(sf::Color playerColor, float dotSize, sf::Vector2f originPoint, sf:
 	this->direction = direction;
 	sf::Vertex v;
 	v.color = playerColor;
-	v.position = { originPoint };
+	v.position =  originPoint;
 	vArray.append(v);
-	v.position = { originPoint };
+	v.position = originPoint;
 	vArray.append(v);
 	vArray.setPrimitiveType(sf::PrimitiveType::LinesStrip);
 }
@@ -30,6 +30,18 @@ Kurve::~Kurve()
 float Kurve::VectorLength(sf::Vector2f v)
 {
 	return sqrt(v.x*v.x + v.y*v.y); //Pytaghoras sats för längden av vektorn
+}
+
+void Kurve::SetstartPoint(sf::Vector2f startPoint)
+{
+	vArray.clear();
+	sf::Vertex v;
+	v.color = playerColor;
+	v.position = startPoint;
+	vArray.append(v);
+	v.position = startPoint;
+	vArray.append(v);
+
 }
 
 void Kurve::Update(float dt, sf::Vector2f position)

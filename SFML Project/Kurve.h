@@ -23,7 +23,7 @@ public:
 	//void SetPosition(sf::Vector2f position);
 	static float VectorLength(sf::Vector2f v);
 
-	
+	void SetstartPoint(sf::Vector2f startPoint);
 
 
 	void Update(float dt, sf::Vector2f position);
