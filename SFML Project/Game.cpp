@@ -3,7 +3,7 @@
 void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
 { 
 		t.draw(title);
-		//t.draw(PausSegment);
+		//t.draw(pressSpace);
 	for (int i = 0; i < playerCount; i++)
 	{
 		t.draw(*playerArr[i]);
@@ -143,8 +143,6 @@ void Game::Update(float dt)
 	}
 	else
 	{
-		//draw(pressSpace);
-
 		//Någon pausruta. typ, "To start next round press space."
 		NewRound(); // Resurrects every player, randomizes new positions and angles
 

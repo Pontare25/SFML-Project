@@ -96,11 +96,5 @@ bool Player::checkCollision()
 		retValue = true;
 	}
 
-
-	/*	if (playerDot.CheckBounds(bounds) == true)
-		{
-			retValue = true;
-			Kill();
-		}*/
 	return retValue;
 } 

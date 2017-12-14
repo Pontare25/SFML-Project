@@ -93,7 +93,7 @@ void Dot::Update(float dt)
 	}
 	float factor = GetSpeed()*dt;
 
-	direction = { sin(angle)*speed, cos(angle)*speed };
+	direction = {  sin(angle)*speed, cos(angle)*speed };
 
 	//move(direction*factor);
 	dot.move(direction*factor);
