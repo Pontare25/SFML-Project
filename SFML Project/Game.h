@@ -3,6 +3,7 @@
 #include "Player.h"
 //#include "Dot.h"
 #include <SFML/Graphics.hpp>
+#include <string>
 
 class Game: public sf::Drawable
 {
@@ -18,6 +19,9 @@ private:
 	sf::Text pressSpace;
 	sf::Font font;
 	sf::Text roundText;
+	sf::Text playerText;
+
+	bool pausing;
 
 
 public:
@@ -29,12 +33,13 @@ public:
 	
 	void AddPlayer(std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey,sf::Color playerColor);
 	int GetNrOfPlayers()const;
-	bool RoundEnded();
+	bool RoundEnded() const;
 	void ExpandPlayerArr();
 	void NewRound();
 	int WinnerIndex();
 	bool PausSegment();
 
+	std::string GetAllPlayerInfo();
 	void Update(float dt);
 	
 

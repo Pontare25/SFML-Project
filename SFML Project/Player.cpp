@@ -13,11 +13,11 @@ Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard
 	this->playerColor = playerColor;
 	this->score = 0;
 	this->alive = true;
-	sf::Vector2f position = { float(rand() % int(1200.0)), float(rand() % int(900.0)) };
+	sf::Vector2f position = { float(rand() % int(1200.0) + 300), float(rand() % int(900.0) + 200) };
 	playerDot.SetPosition(position, float(rand()%360));
 
 	bounds.setScale(1200.0f, 900.0f);
-	bounds.setPosition(600, 450);
+	bounds.setPosition(0, 0);
 	bounds.setFillColor(sf::Color::Green);
 }
 
@@ -46,7 +46,7 @@ void Player::Kill()
 void Player::Resurrect()
 {
 	alive = true;
-	sf::Vector2f position = { float(rand() % int(1000.0)+100), float(rand() % int(700.0)+50)}; //slumpar fram en ny position
+	sf::Vector2f position = { float(rand() % int(800.0)+100), float(rand() % int(450.0)+50)}; //slumpar fram en ny position
 	playerDot.SetPosition(position, float(rand() % 360)); //sätter positionen och slumpar en ny vinkel
 	playerDot.SetSpeed(10.0f);
 }
@@ -84,17 +84,27 @@ std::string Player::ToString() const
 bool Player::checkCollision()
 {
 	bool retValue = false;
-	
-	sf::Vector2f rightX(1200.0f, 0.0f);
-	sf::Vector2f leftX(0.0f, 0.0f);
-	sf::Vector2f upperY(0.0f, 900.0f);
-	sf::Vector2f lowerY(0.0f, 0.0f);
 
-	if(playerDot.GetPosition().x >= rightX.x || playerDot.GetPosition().x <= leftX.x || playerDot.GetPosition().y >= upperY.y || playerDot.GetPosition().y <= lowerY.y)
+	sf::Vector2f xBounds(0.0f, 1200.0f);
+	sf::Vector2f yBounds(0.0f, 900.0f);
+
+
+	if ((playerDot.GetPosition().x + playerDot.GetSize()) >= xBounds.y || (playerDot.GetPosition().x + playerDot.GetSize()) <= xBounds.x || (playerDot.GetPosition().y + playerDot.GetSize()) >= yBounds.y || (playerDot.GetPosition().y + playerDot.GetSize()) <= yBounds.x)
 	{
 		Kill();
 		retValue = true;
 	}
+
+
+	/*if (playerDot.GetKurveArr[playerDot.GetKurveArr().getVertexCount() - 1].position() == playerDot.GetPosition())
+	{
+		Kill();
+		retValue = true; 
+	}*/
+
+	//if  (playerDot.GetKurveArr().getBounds().intersects((playerDot.GetPosition().x +playerDot.GetSize())))
+
+
 
 	return retValue;
 } 

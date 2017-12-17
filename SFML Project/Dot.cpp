@@ -71,11 +71,12 @@ void Dot::SetAngle(float newAngle)
 	this->angle = newAngle;
 }
 
-bool Dot::CheckBounds(sf::RectangleShape & bounds)
+sf::VertexArray Dot::GetKurveArr()
 {
-	return (bounds.getGlobalBounds().intersects(dot.getGlobalBounds()));
-	//return (dot.getGlobalBounds().intersects(bounds.getGlobalBounds()));
+	return kurve.GetKurveArray();
 }
+
+
 
 void Dot::Update(float dt)
 {

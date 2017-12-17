@@ -23,7 +23,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Kurve.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Menucpp.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>

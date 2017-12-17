@@ -34,7 +34,9 @@ public:
 	void SetSpeed(float newSpeed);
 	float GetAngle();
 	void SetAngle(float newAngle);
-	bool CheckBounds(sf::RectangleShape& bounds);
+
+	sf::VertexArray GetKurveArr();
+
 
 	void Update(float dt);
 	void move(sf::Vector2f distance);

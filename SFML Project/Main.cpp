@@ -1,18 +1,18 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
-//#include "Squiggly.h"
 #include "Game.h"
+#include "Menu.h"
 #include <ctime>
 #include "math.h"
 
 using namespace std;
 
-
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	//Squiggly test;
+
+	State* currentState = new Menu();
 
 	sf::Clock clock;
 	sf::RenderWindow window(sf::VideoMode(1200, 900), "Achtung Die Kurve");
@@ -35,6 +35,26 @@ int main()
 			}
 		}
 		float dt = clock.restart().asSeconds();
+
+		/*States nextState = currentState->Update(dt);
+		window.clear();
+		window.draw(*currentState);
+		window.display();
+
+		switch (nextState)
+		{
+		case States::MENU:
+			delete currentState;
+			currentState = new Menu();
+			break;
+		case States::GAME:
+			delete currentState;
+			currentState = new Game();
+			break;
+		case States::NO_CHANGE:
+			break;
+		}
+		delete currentState;*/
 
 		window.clear();
 		game1.Update(dt);

@@ -19,7 +19,7 @@ Kurve::Kurve(sf::Color playerColor, float dotSize, sf::Vector2f originPoint, sf:
 	vArray.setPrimitiveType(sf::PrimitiveType::LinesStrip);
 }
 
-Kurve::Kurve()
+Kurve::Kurve() 
 {
 }
 
@@ -41,19 +41,23 @@ void Kurve::SetstartPoint(sf::Vector2f startPoint)
 	vArray.append(v);
 	v.position = startPoint;
 	vArray.append(v);
+}
 
+sf::VertexArray Kurve::GetKurveArray()
+{
+	return vArray;
 }
 
 void Kurve::Update(float dt, sf::Vector2f position)
 {
-	if (vArray.getVertexCount() < 5000)
-	{
+	//if (vArray.getVertexCount() < 5000)
+	//{
 		if (VectorLength(vArray[vArray.getVertexCount() - 1].position - vArray[vArray.getVertexCount() - 2].position) > 5.0f)
 		{
 			sf::Vertex newVertex = vArray[vArray.getVertexCount() - 1];
 			vArray.append(newVertex);
 		}
-	}
+	//}
 	
 	vArray[vArray.getVertexCount() - 1].position = position;
 }

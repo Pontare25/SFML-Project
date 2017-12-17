@@ -2,12 +2,19 @@
 
 void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
 { 
-		t.draw(title);
-		//t.draw(pressSpace);
+	t.draw(title);
+	/*if (pausing == true)
+	{
+		t.draw(pressSpace);
+		pausing =PausSegment();
+	}
+*/
+	t.draw(roundText);
+	t.draw(playerText);
 	for (int i = 0; i < playerCount; i++)
 	{
 		t.draw(*playerArr[i]);
-	}	
+	}
 }
 
 Game::Game()
@@ -16,8 +23,8 @@ Game::Game()
 	this->playerCount = 0;
 	this->roundCount = 1;
 	playerArr = new Player*[playerCap];
+	this->pausing = true;
 
-	
 	if (!font.loadFromFile("arial.ttf"))
 	{
 		//std::cout << "Failure to load text\n";
@@ -26,15 +33,27 @@ Game::Game()
 	title.setString("Welcome to Achtung Die Kurve");
 	title.setCharacterSize(24);
 	title.setColor(sf::Color::Red);
-	title.setPosition(600.0f, 450.0f);
+	title.setPosition(450.0f, 0.0f);
 	title.setStyle(sf::Text::Bold);
 
 	pressSpace.setFont(font);
 	pressSpace.setString("Press Space to continue");
 	pressSpace.setCharacterSize(42);
 	pressSpace.setColor(sf::Color::White);
-	pressSpace.setPosition(600.0f, 900.0f);
+	pressSpace.setPosition(450.0f, 450.0f);
 
+	roundText.setFont(font);
+	roundText.setString("Round:\t" + std::to_string(roundCount));
+	roundText.setCharacterSize(24);
+	roundText.setColor(sf::Color::Yellow);
+	roundText.setPosition(950.0f, 20.0f);
+
+
+	playerText.setFont(font);
+	playerText.setString("Players\n" + GetAllPlayerInfo()); // funkar ej!
+	playerText.setCharacterSize(24);		
+	playerText.setColor(sf::Color::White);
+	playerText.setPosition(950.0f, 50.0f);
 
 	
 }
@@ -64,7 +83,7 @@ int Game::GetNrOfPlayers() const
 	return this->playerCount;
 }
 
-bool Game::RoundEnded()
+bool Game::RoundEnded() const
 {
 	int deathCounter = 0;
 	int aliveIndex = -1;
@@ -124,12 +143,22 @@ int Game::WinnerIndex()
 
 bool Game::PausSegment()
 {
-	bool retValue = false;
+	bool retValue = true;
 	if (sf::Keyboard::isKeyPressed(sf:: Keyboard:: Space))
 	{
-		retValue = true;
+		retValue = false;
 	}
 	return retValue;
+}
+
+std::string Game::GetAllPlayerInfo()
+{
+	std::string retString;
+	for (int i = 0; i < playerCount; i++)
+	{
+		retString += playerArr[i]->ToString() + "\n\n";
+	}
+	return retString;
 }
 
 void Game::Update(float dt)
@@ -143,8 +172,8 @@ void Game::Update(float dt)
 	}
 	else
 	{
-		//Någon pausruta. typ, "To start next round press space."
+		pausing = PausSegment();//Någon pausruta. typ, "To start next round press space."
 		NewRound(); // Resurrects every player, randomizes new positions and angles
-
+		Update(dt);
 	}
 }
