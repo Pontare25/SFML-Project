@@ -19,12 +19,13 @@ private:
 	sf::RectangleShape playerDotBounds;
 
 public:
-	Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor);
+	Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor, sf::RectangleShape& border);
 
 	~Player();
 
 	void update(float dt);
 
+	sf::RectangleShape border;
 	bool IsAlive();
 	void Kill(); //Called upon when a player hits a wall or kurve
 	void Resurrect(); //Resets alive when a ew round begins (also possibly for potential powerup like extra life)
@@ -40,7 +41,7 @@ public:
 
 	bool checkCollision();
 
-	void otherCollision(const sf::FloatRect & box);
+	bool otherCollision(const sf::FloatRect & box);
 
 
 

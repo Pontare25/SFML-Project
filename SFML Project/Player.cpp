@@ -3,22 +3,23 @@
 void Player::draw(sf::RenderTarget & t, sf::RenderStates s) const
 {
 	t.draw(playerDot);
-	//t.draw(bounds);
 }
 
-Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor)
-	: playerDot(1200.0, 900.0, playerColor, rightKey,leftKey)
+Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor, sf::RectangleShape& border)
+	: playerDot(1200.0, 900.0, playerColor, rightKey,leftKey, border)
 {
 	this->name = name; 
 	this->playerColor = playerColor;
 	this->score = 0;
 	this->alive = true;
-	sf::Vector2f position = { float(rand() % int(1200.0) + 300), float(rand() % int(900.0) + 200) };
-	playerDot.SetPosition(position, float(rand()%360));
+	this->border = border;
+	/*sf::Vector2f position = { float(rand() % int(1200.0) + 300), float(rand() % int(900.0) + 200) };
+	playerDot.SetPosition(position, float(rand()%360));*/
 
-	/*bounds.setScale(1200.0f, 900.0f);
-	bounds.setPosition(0, 0);
-	bounds.setFillColor(sf::Color::Green);*/
+	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x), float(rand() % int(border.getSize().y) + border.getPosition().y + 20) };
+	playerDot.SetPosition(borderpositioned, float(rand() % 360));
+
+
 }
 
 Player::~Player()
@@ -98,9 +99,13 @@ bool Player::checkCollision()
 {
 	bool retValue = false;
 
-	sf::Vector2f xBounds(0.0f, 1200.0f);
-	sf::Vector2f yBounds(0.0f, 900.0f);
+	
 
+	sf::Vector2f xBounds(border.getPosition().x, border.getPosition().x +border.getSize().x);
+	sf::Vector2f yBounds(border.getPosition().y, border.getPosition().y + border.getSize().y);
+
+	/*sf::Vector2f xBounds(0.0f, 1200.0f);
+	sf::Vector2f yBounds(0.0f, 900.0f);*/
 
 	if ((playerDot.GetPosition().x + playerDot.GetSize()) >= xBounds.y || (playerDot.GetPosition().x + playerDot.GetSize()) <= xBounds.x || (playerDot.GetPosition().y + playerDot.GetSize()) >= yBounds.y || (playerDot.GetPosition().y + playerDot.GetSize()) <= yBounds.x)
 	{
@@ -122,13 +127,8 @@ bool Player::checkCollision()
 	return retValue;
 }
 
-void Player::otherCollision(const sf::FloatRect & box)
+bool Player::otherCollision(const sf::FloatRect & box)
 {
-
-
-	if (playerDot.intersects(box))
-	{
-		Kill();
-	}
+	return playerDot.intersects(box);
 }
 

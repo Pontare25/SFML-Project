@@ -90,7 +90,7 @@ void Game::AddPlayer(std::string & name, sf::Keyboard::Key rightKey, sf::Keyboar
 		ExpandPlayerArr();
 	}
 	
-	playerArr[playerCount] = new Player(name, rightKey, leftKey, playerColor);
+	playerArr[playerCount] = new Player(name, rightKey, leftKey, playerColor, border);
 	playerCount++;
 }
 
@@ -174,13 +174,13 @@ void Game::otherPlayerCollision()
 	{
 		for (int k = 0; k < playerCount; k++)
 		{
-			sf::VertexArray allButLast;
-			sf::VertexArray temp = playerArr[k + 1]->GetKurveArr();
-			for (int j = 0; j < temp.getVertexCount() - 1; j++)
+			if (i != k)
 			{
-				allButLast.append(temp[j]);
-			} 
-			playerArr[i]->otherCollision((allButLast.getBounds()));
+				if (playerArr[i]->otherCollision(playerArr[k]->GetPlayerDot().GetDotBounds()))
+				{
+					playerArr[k]->Kill();
+				}
+			}
 		}
 	}
 

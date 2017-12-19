@@ -7,7 +7,7 @@ void Dot::draw(sf::RenderTarget & t, sf::RenderStates s) const
 	t.draw(kurve);
 }
 
-Dot::Dot(float width, float height, sf::Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey)	
+Dot::Dot(float width, float height, sf::Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::RectangleShape & border)
 {
 	this->rightKey = rightKey;
 	this->leftKey = leftKey;
@@ -16,7 +16,10 @@ Dot::Dot(float width, float height, sf::Color playerColor, sf::Keyboard::Key rig
 	float angle = float(rand() % 360 + 50);
 	//this->position = sf::Vector2f((rand() % int(width) + 100), (rand() % int(height) + 100));
 
-	dot.setPosition((rand() % int(width) + 100), (rand() % int(height) + 100));
+	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x), float(rand() % int(border.getSize().y) + border.getPosition().y + 20) };
+	dot.setPosition(borderpositioned);
+
+	//dot.setPosition((rand() % int(width) + 100), (rand() % int(height) + 100));
 	dot.setFillColor(playerColor);
 	dot.setRadius(size);
 	windowSize = { width, height };
@@ -89,6 +92,11 @@ bool Dot::selfIntersect()
 		return kurve.intersects(dot.getGlobalBounds(), allButLast);
 	}
 	return false;
+}
+
+sf::FloatRect Dot::GetDotBounds()
+{
+	return dot.getGlobalBounds();
 }
 
 
