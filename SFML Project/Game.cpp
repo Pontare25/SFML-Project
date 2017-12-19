@@ -3,6 +3,7 @@
 void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
 { 
 	t.draw(title);
+	t.draw(border);
 	/*if (pausing == true)
 	{
 		t.draw(pressSpace);
@@ -24,40 +25,53 @@ Game::Game()
 	this->playerCap = 2;
 	this->playerCount = 0;
 	this->roundCount = 1;
-	playerArr  = new Player*[playerCap];
+	playerArr = new Player*[playerCap];
 	this->pausing = true;
 
 	if (!font.loadFromFile("arial.ttf"))
 	{
 		//std::cout << "Failure to load text\n";
 	}
-	title.setFont(font);
+	if (!font2.loadFromFile("old_stamper.ttf"))
+	{
+		font2 = font;
+		//std::cout << "Failure to load text\n";
+	}
+	if (!font3.loadFromFile("plasdrip.ttf"))
+	{
+		font3 = font;
+		//std::cout << "Failure to load text\n";
+	}
+	title.setFont(font2);
 	title.setString("Welcome to Achtung Die Kurve");
-	title.setCharacterSize(24);
+	title.setCharacterSize(30);
 	title.setColor(sf::Color::Yellow);
-	title.setPosition(450.0f, 0.0f);
+	title.setPosition(175.0f, 0.0f);
 	title.setStyle(sf::Text::Bold);
 
 	pressSpace.setFont(font);
 	pressSpace.setString("Press Space to continue");
-	pressSpace.setCharacterSize(42);
+	pressSpace.setCharacterSize(60);
 	pressSpace.setColor(sf::Color::White);
-	pressSpace.setPosition(450.0f, 450.0f);
+	pressSpace.setPosition(140.0f, 425.0f);
 
-	roundText.setFont(font);
-	roundText.setString("Round:\t" + std::to_string(roundCount));
-	roundText.setCharacterSize(24);
+	roundText.setFont(font3);
+	roundText.setString("Round\t" + std::to_string(roundCount));
+	roundText.setCharacterSize(30);
 	roundText.setColor(sf::Color::Yellow);
-	roundText.setPosition(950.0f, 20.0f);
-
+	roundText.setPosition(950.0f, 40.0f);
 
 	playerText.setFont(font);
 	playerText.setString("Players\n" + GetAllPlayerInfo() + "hej"); // funkar ej!
-	playerText.setCharacterSize(24);		
-	playerText.setColor(sf::Color::White);
-	playerText.setPosition(950.0f, 50.0f);
+	playerText.setCharacterSize(24);
+	playerText.setColor(sf::Color::Yellow);
+	playerText.setPosition(950.0f, 80.0f);
 
-	
+	border.setSize({ 900.0f, 835.0f });
+	border.setOutlineColor(sf::Color::Yellow);
+	border.setPosition({ 10.0f, 50.0f });
+	border.setOutlineThickness(3.0f);
+	border.setFillColor(sf::Color::Black);
 }
 
 Game::~Game()
@@ -154,24 +168,22 @@ bool Game::PausSegment()
 	return retValue;
 }
 
-bool Game::kurveCollision()
+void Game::otherPlayerCollision()
 {
-	bool retValue = false;
-
-	
-
-	playerArr[0]->GetKurveArr();
-
 	for (int i = 0; i < playerCount; i++)
 	{
-		//if (collision between lines)
+		for (int k = 0; k < playerCount; k++)
 		{
-			playerArr[i]->Kill();
-			retValue = true;
+			sf::VertexArray allButLast;
+			sf::VertexArray temp = playerArr[k + 1]->GetKurveArr();
+			for (int j = 0; j < temp.getVertexCount() - 1; j++)
+			{
+				allButLast.append(temp[j]);
+			} 
+			playerArr[i]->otherCollision((allButLast.getBounds()));
 		}
 	}
 
-	return retValue;
 }
 
 std::string Game::GetAllPlayerInfo()
@@ -191,6 +203,7 @@ void Game::Update(float dt)
 	{
 		for (int i = 0; i < playerCount; i++)
 		{
+			//playerArr[i]->otherCollision(playerArr[i]->GetPlayerDot(),);
 			playerArr[i]->update(dt);
 		}
 	}

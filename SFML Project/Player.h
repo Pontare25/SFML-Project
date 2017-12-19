@@ -35,8 +35,14 @@ public:
 	int GetScore() const;
 	std::string ToString() const;
 	sf::VertexArray GetKurveArr();
+	
+	Dot GetPlayerDot();
 
 	bool checkCollision();
+
+	void otherCollision(const sf::FloatRect & box);
+
+
 
 };
 

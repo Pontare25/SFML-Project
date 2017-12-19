@@ -18,8 +18,12 @@ private:
 	sf::Text title;
 	sf::Text pressSpace;
 	sf::Font font;
+	sf::Font font2;
+	sf::Font font3;
 	sf::Text roundText;
 	sf::Text playerText;
+
+	sf::RectangleShape border;
 
 	bool pausing;
 
@@ -38,7 +42,7 @@ public:
 	void NewRound();
 	int WinnerIndex();
 	bool PausSegment();
-	bool kurveCollision();
+	void otherPlayerCollision();
 
 	std::string GetAllPlayerInfo();
 	void Update(float dt);

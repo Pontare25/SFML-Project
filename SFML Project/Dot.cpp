@@ -92,7 +92,6 @@ bool Dot::selfIntersect()
 }
 
 
-
 bool Dot::intersects(const sf::FloatRect & box)
 {
 	return kurve.intersects(box, kurve.GetKurveArray());;
@@ -116,7 +115,6 @@ void Dot::Update(float dt)
 
 	direction = {  sin(angle)*speed, cos(angle)*speed };
 
-	//move(direction*factor);
 	dot.move(direction*factor);
 
 	kurve.Update(dt, dot.getPosition());

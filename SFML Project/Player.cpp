@@ -3,7 +3,7 @@
 void Player::draw(sf::RenderTarget & t, sf::RenderStates s) const
 {
 	t.draw(playerDot);
-	t.draw(bounds);
+	//t.draw(bounds);
 }
 
 Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor)
@@ -16,13 +16,13 @@ Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard
 	sf::Vector2f position = { float(rand() % int(1200.0) + 300), float(rand() % int(900.0) + 200) };
 	playerDot.SetPosition(position, float(rand()%360));
 
-	bounds.setScale(1200.0f, 900.0f);
+	/*bounds.setScale(1200.0f, 900.0f);
 	bounds.setPosition(0, 0);
-	bounds.setFillColor(sf::Color::Green);
+	bounds.setFillColor(sf::Color::Green);*/
 }
 
 Player::~Player()
-{
+{ 
 	//Empty
 }
 
@@ -86,6 +86,14 @@ sf::VertexArray Player::GetKurveArr()
 	return playerDot.GetKurveArr();
 }
 
+Dot Player::GetPlayerDot()
+{
+	return playerDot;
+}
+
+
+
+
 bool Player::checkCollision()
 {
 	bool retValue = false;
@@ -99,21 +107,28 @@ bool Player::checkCollision()
 		Kill();
 		retValue = true;
 	}
-
-
 	if (playerDot.selfIntersect())
 	{
 		Kill();
 		retValue = true; 
 	}
 
-
-
-
+	
 
 	//if  (playerDot.GetKurveArr().getBounds().intersects((playerDot.GetPosition().x +playerDot.GetSize())))
 
 
 
 	return retValue;
-} 
+}
+
+void Player::otherCollision(const sf::FloatRect & box)
+{
+
+
+	if (playerDot.intersects(box))
+	{
+		Kill();
+	}
+}
+
