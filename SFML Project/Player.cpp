@@ -81,6 +81,11 @@ std::string Player::ToString() const
 	return retString;
 }
 
+sf::VertexArray Player::GetKurveArr()
+{
+	return playerDot.GetKurveArr();
+}
+
 bool Player::checkCollision()
 {
 	bool retValue = false;
@@ -96,11 +101,15 @@ bool Player::checkCollision()
 	}
 
 
-	/*if (playerDot.GetKurveArr[playerDot.GetKurveArr().getVertexCount() - 1].position() == playerDot.GetPosition())
+	if (playerDot.selfIntersect())
 	{
 		Kill();
 		retValue = true; 
-	}*/
+	}
+
+
+
+
 
 	//if  (playerDot.GetKurveArr().getBounds().intersects((playerDot.GetPosition().x +playerDot.GetSize())))
 

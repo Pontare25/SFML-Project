@@ -36,8 +36,9 @@ public:
 	void SetAngle(float newAngle);
 
 	sf::VertexArray GetKurveArr();
+	bool selfIntersect();
 
-
+	bool intersects(const sf::FloatRect& box);
 	void Update(float dt);
 	void move(sf::Vector2f distance);
 	void Draw();

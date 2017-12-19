@@ -66,4 +66,39 @@ void Kurve::draw()
 {
 }
 
+bool Kurve::intersects(const sf::FloatRect & box, sf::VertexArray  vertices)
+{
+	sf::VertexArray fronthalf;
+	sf::VertexArray backhalf;
+
+	for (int i = 0; i < vertices.getVertexCount() / 2; i++)
+	{
+		backhalf.append( vertices[i]);
+	}
+	for (int i = vertices.getVertexCount() / 2; i < vertices.getVertexCount(); i++)
+	{
+		fronthalf.append(vertices[i]);
+	}
+
+	if (backhalf.getBounds().intersects(box))
+	{
+		if (backhalf.getVertexCount() <= 3)
+		{
+			return true;
+		}
+		else return intersects(box, backhalf);
+	}
+
+	if (fronthalf.getBounds().intersects(box))
+	{
+		if (fronthalf.getVertexCount() <= 3)
+		{
+			return true;
+		}
+		else return intersects(box, fronthalf);
+	}
+
+	return false;
+}
+
 

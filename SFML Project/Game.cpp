@@ -9,6 +9,8 @@ void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
 		pausing =PausSegment();
 	}
 */
+
+//	t.draw(pressSpace);
 	t.draw(roundText);
 	t.draw(playerText);
 	for (int i = 0; i < playerCount; i++)
@@ -22,7 +24,7 @@ Game::Game()
 	this->playerCap = 2;
 	this->playerCount = 0;
 	this->roundCount = 1;
-	playerArr = new Player*[playerCap];
+	playerArr  = new Player*[playerCap];
 	this->pausing = true;
 
 	if (!font.loadFromFile("arial.ttf"))
@@ -32,7 +34,7 @@ Game::Game()
 	title.setFont(font);
 	title.setString("Welcome to Achtung Die Kurve");
 	title.setCharacterSize(24);
-	title.setColor(sf::Color::Red);
+	title.setColor(sf::Color::Yellow);
 	title.setPosition(450.0f, 0.0f);
 	title.setStyle(sf::Text::Bold);
 
@@ -50,7 +52,7 @@ Game::Game()
 
 
 	playerText.setFont(font);
-	playerText.setString("Players\n" + GetAllPlayerInfo()); // funkar ej!
+	playerText.setString("Players\n" + GetAllPlayerInfo() + "hej"); // funkar ej!
 	playerText.setCharacterSize(24);		
 	playerText.setColor(sf::Color::White);
 	playerText.setPosition(950.0f, 50.0f);
@@ -146,8 +148,29 @@ bool Game::PausSegment()
 	bool retValue = true;
 	if (sf::Keyboard::isKeyPressed(sf:: Keyboard:: Space))
 	{
+
 		retValue = false;
 	}
+	return retValue;
+}
+
+bool Game::kurveCollision()
+{
+	bool retValue = false;
+
+	
+
+	playerArr[0]->GetKurveArr();
+
+	for (int i = 0; i < playerCount; i++)
+	{
+		//if (collision between lines)
+		{
+			playerArr[i]->Kill();
+			retValue = true;
+		}
+	}
+
 	return retValue;
 }
 
@@ -161,6 +184,7 @@ std::string Game::GetAllPlayerInfo()
 	return retString;
 }
 
+
 void Game::Update(float dt)
 {
 	if (RoundEnded() == false)
@@ -172,7 +196,7 @@ void Game::Update(float dt)
 	}
 	else
 	{
-		pausing = PausSegment();//Någon pausruta. typ, "To start next round press space."
+	//	pausing = PausSegment();//Någon pausruta. typ, "To start next round press space."
 		NewRound(); // Resurrects every player, randomizes new positions and angles
 		Update(dt);
 	}

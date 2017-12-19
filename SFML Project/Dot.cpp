@@ -76,7 +76,27 @@ sf::VertexArray Dot::GetKurveArr()
 	return kurve.GetKurveArray();
 }
 
+bool Dot::selfIntersect()
+{
+	sf::VertexArray allButLast;
+	sf::VertexArray temp = GetKurveArr();
+	if (temp.getVertexCount() > 10)
+	{
+		for (int i = 0; i < temp.getVertexCount() - 6; i++)
+		{
+			allButLast.append(temp[i]);
+		}
+		return kurve.intersects(dot.getGlobalBounds(), allButLast);
+	}
+	return false;
+}
 
+
+
+bool Dot::intersects(const sf::FloatRect & box)
+{
+	return kurve.intersects(box, kurve.GetKurveArray());;
+}
 
 void Dot::Update(float dt)
 {

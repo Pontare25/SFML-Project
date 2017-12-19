@@ -38,6 +38,7 @@ public:
 	void NewRound();
 	int WinnerIndex();
 	bool PausSegment();
+	bool kurveCollision();
 
 	std::string GetAllPlayerInfo();
 	void Update(float dt);

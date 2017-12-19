@@ -34,6 +34,7 @@ public:
 	sf::Color GetPlayerColor();
 	int GetScore() const;
 	std::string ToString() const;
+	sf::VertexArray GetKurveArr();
 
 	bool checkCollision();
 
