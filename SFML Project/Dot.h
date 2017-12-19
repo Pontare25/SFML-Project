@@ -14,7 +14,6 @@ private:
 	//sf::Vector2f position;
 	sf::CircleShape dot;
 	sf::Vector2f direction;
-	sf::Vector2f windowSize;
 	sf::Keyboard::Key rightKey;
 	sf::Keyboard::Key leftKey;
 	Kurve kurve;
@@ -23,7 +22,7 @@ private:
 
 
 public:
-	Dot(float width, float height, sf:: Color playerColor, sf::Keyboard::Key rightKey,sf::Keyboard::Key leftKey, sf::RectangleShape & border);
+	Dot(sf:: Color playerColor, sf::Keyboard::Key rightKey,sf::Keyboard::Key leftKey, sf::RectangleShape & border);
 
 	void SetPosition(sf::Vector2f newPosition, float angle= float(rand() % 360 + 50));
 	sf::Vector2f GetPosition();
@@ -37,9 +36,7 @@ public:
 
 	sf::VertexArray GetKurveArr();
 	bool selfIntersect();
-
 	sf::FloatRect GetDotBounds();
-
 
 	bool intersects(const sf::FloatRect& box);
 	void Update(float dt);

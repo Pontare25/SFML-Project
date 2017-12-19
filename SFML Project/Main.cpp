@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	_crtBreakAlloc = 161;
+	//_crtBreakAlloc = 161;
 
 	//State* currentState = new Menu();
 
@@ -22,7 +22,7 @@ int main()
 	
 	string name1 = "Pontus";
 	game1.AddPlayer(name1, sf::Keyboard::Right, sf::Keyboard::Left, sf::Color::Red);
-	string name2 = "Jim";
+	string name2 = "JonteBOOI";
 	game1.AddPlayer(name2, sf::Keyboard::D, sf::Keyboard::A, sf::Color::Green);
 	/*string name3 = "Eric";
 	game1.AddPlayer(name3, sf::Keyboard::L, sf::Keyboard::K, sf::Color::Blue);*/

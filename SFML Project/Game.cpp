@@ -52,6 +52,7 @@ Game::Game()
 	pressSpace.setCharacterSize(60);
 	pressSpace.setColor(sf::Color::White);
 	pressSpace.setPosition(140.0f, 425.0f);
+	pressSpace.setStyle(sf::Text::Bold);
 
 	roundText.setFont(font3);
 	roundText.setString("Round\t" + std::to_string(roundCount));
@@ -60,8 +61,8 @@ Game::Game()
 	roundText.setPosition(950.0f, 40.0f);
 
 	playerText.setFont(font);
-	playerText.setString("Players\n" + GetAllPlayerInfo() + "hej"); // funkar ej!
-	playerText.setCharacterSize(24);
+	playerText.setString("Players\n\n" + GetAllPlayerInfo()); // funkar ej!
+	playerText.setCharacterSize(30);
 	playerText.setColor(sf::Color::Yellow);
 	playerText.setPosition(950.0f, 80.0f);
 

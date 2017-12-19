@@ -6,15 +6,13 @@ void Player::draw(sf::RenderTarget & t, sf::RenderStates s) const
 }
 
 Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor, sf::RectangleShape& border)
-	: playerDot(1200.0, 900.0, playerColor, rightKey,leftKey, border)
+	: playerDot(playerColor, rightKey,leftKey, border)
 {
 	this->name = name; 
 	this->playerColor = playerColor;
 	this->score = 0;
 	this->alive = true;
 	this->border = border;
-	/*sf::Vector2f position = { float(rand() % int(1200.0) + 300), float(rand() % int(900.0) + 200) };
-	playerDot.SetPosition(position, float(rand()%360));*/
 
 	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x) + 40.0f, float(rand() % int(border.getSize().y) + border.getPosition().y - 40.0f) };
 	playerDot.SetPosition(borderpositioned, float(rand() % 360));

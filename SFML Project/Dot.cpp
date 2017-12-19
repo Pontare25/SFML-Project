@@ -7,22 +7,19 @@ void Dot::draw(sf::RenderTarget & t, sf::RenderStates s) const
 	t.draw(kurve);
 }
 
-Dot::Dot(float width, float height, sf::Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::RectangleShape & border)
+Dot::Dot(sf::Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::RectangleShape & border)
 {
 	this->rightKey = rightKey;
 	this->leftKey = leftKey;
 	size = 5.0f;
 	speed = 10.0f;
 	float angle = float(rand() % 360 + 50);
-	//this->position = sf::Vector2f((rand() % int(width) + 100), (rand() % int(height) + 100));
 
 	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x) + 40.0f, float(rand() % int(border.getSize().y) + border.getPosition().y - 40.0f) };
 	dot.setPosition(borderpositioned);
 
-	//dot.setPosition((rand() % int(width) + 100), (rand() % int(height) + 100));
 	dot.setFillColor(playerColor);
 	dot.setRadius(size);
-	windowSize = { width, height };
 	kurve = Kurve(playerColor, GetSize(), GetPosition(), GetDirection());
 }
 
