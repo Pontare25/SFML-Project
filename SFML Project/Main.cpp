@@ -11,8 +11,9 @@ using namespace std;
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_crtBreakAlloc = 161;
 
-	State* currentState = new Menu();
+	//State* currentState = new Menu();
 
 	sf::Clock clock;
 	sf::RenderWindow window(sf::VideoMode(1200, 900), "Achtung Die Kurve");
@@ -23,6 +24,8 @@ int main()
 	game1.AddPlayer(name1, sf::Keyboard::Right, sf::Keyboard::Left, sf::Color::Red);
 	string name2 = "Jim";
 	game1.AddPlayer(name2, sf::Keyboard::D, sf::Keyboard::A, sf::Color::Green);
+	/*string name3 = "Eric";
+	game1.AddPlayer(name3, sf::Keyboard::L, sf::Keyboard::K, sf::Color::Blue);*/
 
 	while (window.isOpen())
 	{

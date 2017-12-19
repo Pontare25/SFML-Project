@@ -27,7 +27,6 @@ private:
 
 	bool pausing;
 
-
 public:
 	Game();
 	~Game();

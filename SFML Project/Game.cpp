@@ -4,12 +4,10 @@ void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
 { 
 	t.draw(title);
 	t.draw(border);
-	/*if (pausing == true)
+	if (pausing == true)
 	{
 		t.draw(pressSpace);
-		pausing =PausSegment();
 	}
-*/
 
 //	t.draw(pressSpace);
 	t.draw(roundText);
@@ -26,7 +24,7 @@ Game::Game()
 	this->playerCount = 0;
 	this->roundCount = 1;
 	playerArr = new Player*[playerCap];
-	this->pausing = true;
+	this->pausing = false;
 
 	if (!font.loadFromFile("arial.ttf"))
 	{
@@ -108,17 +106,17 @@ bool Game::RoundEnded() const
 		if (playerArr[i]->IsAlive() == false)
 		{
 			deathCounter++;
-		}
+		} 
 		else 
 		{
 			aliveIndex = i;
 		}
 	}
-	if (deathCounter == (playerCount-1))
-	{
-		playerArr[aliveIndex]->AddScore(); //Adds score to the winner
-	}
-	return playerCount == (deathCounter - 1);
+	//if (playerCount == (deathCounter + 1))
+	//{
+	//	playerArr[aliveIndex]->AddScore(); //Adds score to the winner
+	//}
+	return playerCount == (deathCounter + 1);
 }
 
 void Game::ExpandPlayerArr()
@@ -162,7 +160,6 @@ bool Game::PausSegment()
 	bool retValue = true;
 	if (sf::Keyboard::isKeyPressed(sf:: Keyboard:: Space))
 	{
-
 		retValue = false;
 	}
 	return retValue;
@@ -183,7 +180,6 @@ void Game::otherPlayerCollision()
 			}
 		}
 	}
-
 }
 
 std::string Game::GetAllPlayerInfo()
@@ -195,22 +191,33 @@ std::string Game::GetAllPlayerInfo()
 	}
 	return retString;
 }
-
-
 void Game::Update(float dt)
 {
+	playerText.setString("Players\n" + GetAllPlayerInfo());
+	roundText.setString("Round\t" + std::to_string(roundCount));
 	if (RoundEnded() == false)
 	{
+		otherPlayerCollision();
 		for (int i = 0; i < playerCount; i++)
 		{
-			//playerArr[i]->otherCollision(playerArr[i]->GetPlayerDot(),);
 			playerArr[i]->update(dt);
 		}
 	}
 	else
 	{
-	//	pausing = PausSegment();//Någon pausruta. typ, "To start next round press space."
-		NewRound(); // Resurrects every player, randomizes new positions and angles
-		Update(dt);
+		pausing = true;
+		pausing = PausSegment();
+		if (pausing == false)
+		{
+			for (int i = 0; i < playerCount; i++)
+			{
+				if (playerArr[i]->IsAlive())
+				{
+					playerArr[i]->AddScore();
+						i = playerCount;
+				}
+			}
+			NewRound(); // Resurrects every player, randomizes new positions and angles
+		}
 	}
 }

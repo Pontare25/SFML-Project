@@ -16,10 +16,8 @@ Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard
 	/*sf::Vector2f position = { float(rand() % int(1200.0) + 300), float(rand() % int(900.0) + 200) };
 	playerDot.SetPosition(position, float(rand()%360));*/
 
-	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x), float(rand() % int(border.getSize().y) + border.getPosition().y + 20) };
+	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x) + 40.0f, float(rand() % int(border.getSize().y) + border.getPosition().y - 40.0f) };
 	playerDot.SetPosition(borderpositioned, float(rand() % 360));
-
-
 }
 
 Player::~Player()
@@ -47,7 +45,7 @@ void Player::Kill()
 void Player::Resurrect()
 {
 	alive = true;
-	sf::Vector2f position = { float(rand() % int(800.0)+100), float(rand() % int(450.0)+50)}; //slumpar fram en ny position
+	sf::Vector2f position = { float(rand() % int(border.getSize().x) + border.getPosition().x) + 40.0f, float(rand() % int(border.getSize().y) + border.getPosition().y - 40.0f) }; //slumpar fram en ny position
 	playerDot.SetPosition(position, float(rand() % 360)); //sätter positionen och slumpar en ny vinkel
 	playerDot.SetSpeed(10.0f);
 }
@@ -93,40 +91,29 @@ Dot Player::GetPlayerDot()
 }
 
 
-
-
 bool Player::checkCollision()
 {
 	bool retValue = false;
 
-	
-
 	sf::Vector2f xBounds(border.getPosition().x, border.getPosition().x +border.getSize().x);
 	sf::Vector2f yBounds(border.getPosition().y, border.getPosition().y + border.getSize().y);
 
-	/*sf::Vector2f xBounds(0.0f, 1200.0f);
-	sf::Vector2f yBounds(0.0f, 900.0f);*/
-
+	//Checks if it hits the border
 	if ((playerDot.GetPosition().x + playerDot.GetSize()) >= xBounds.y || (playerDot.GetPosition().x + playerDot.GetSize()) <= xBounds.x || (playerDot.GetPosition().y + playerDot.GetSize()) >= yBounds.y || (playerDot.GetPosition().y + playerDot.GetSize()) <= yBounds.x)
 	{
 		Kill();
 		retValue = true;
 	}
+	//Checks if dot hits it's own kurve
 	if (playerDot.selfIntersect())
 	{
 		Kill();
 		retValue = true; 
 	}
-
-	
-
-	//if  (playerDot.GetKurveArr().getBounds().intersects((playerDot.GetPosition().x +playerDot.GetSize())))
-
-
-
 	return retValue;
 }
 
+//Checks from Game if another dot hits it's kurve
 bool Player::otherCollision(const sf::FloatRect & box)
 {
 	return playerDot.intersects(box);

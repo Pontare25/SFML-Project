@@ -16,7 +16,7 @@ Dot::Dot(float width, float height, sf::Color playerColor, sf::Keyboard::Key rig
 	float angle = float(rand() % 360 + 50);
 	//this->position = sf::Vector2f((rand() % int(width) + 100), (rand() % int(height) + 100));
 
-	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x), float(rand() % int(border.getSize().y) + border.getPosition().y + 20) };
+	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x) + 40.0f, float(rand() % int(border.getSize().y) + border.getPosition().y - 40.0f) };
 	dot.setPosition(borderpositioned);
 
 	//dot.setPosition((rand() % int(width) + 100), (rand() % int(height) + 100));
