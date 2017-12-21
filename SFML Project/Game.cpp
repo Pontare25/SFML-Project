@@ -8,14 +8,14 @@ void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
 	{
 		t.draw(pressSpace);
 	}
-
-//	t.draw(pressSpace);
 	t.draw(roundText);
 	t.draw(playerText);
 	for (int i = 0; i < playerCount; i++)
 	{
 		t.draw(*playerArr[i]);
 	}
+
+	t.draw(pow);
 }
 
 Game::Game()
@@ -24,6 +24,7 @@ Game::Game()
 	this->playerCount = 0;
 	this->roundCount = 1;
 	playerArr = new Player*[playerCap];
+	
 	this->pausing = false;
 
 	if (!font.loadFromFile("arial.ttf"))
@@ -71,6 +72,13 @@ Game::Game()
 	border.setPosition({ 10.0f, 50.0f });
 	border.setOutlineThickness(3.0f);
 	border.setFillColor(sf::Color::Black);
+	
+	powerTime = 0.0f;
+	playerPowerTime = 0.0f;
+	powerupExists = false;
+	playerHasPowerup = false;
+	powerPlayer = -1;
+	pow = Powerups(border);
 }
 
 Game::~Game()
@@ -113,10 +121,6 @@ bool Game::RoundEnded() const
 			aliveIndex = i;
 		}
 	}
-	//if (playerCount == (deathCounter + 1))
-	//{
-	//	playerArr[aliveIndex]->AddScore(); //Adds score to the winner
-	//}
 	return playerCount == (deathCounter + 1);
 }
 
@@ -203,7 +207,61 @@ void Game::Update(float dt)
 		{
 			playerArr[i]->update(dt);
 		}
+
+		powerTime += dt;
+		if (powerTime >= 3.0f && playerHasPowerup == false)
+		{
+			if (powerupExists == false)
+			{
+				//spawna in en ny powerup
+
+				powerupExists = true;
+				powerTime = 0.0f;
+			}
+		}
+
+		if (powerupExists)
+		{
+			for (int i = 0; i < playerCount; i++)
+			{
+				if (playerArr[i]->otherCollision(pow.GetSpriteBounds()))
+				{
+					powerPlayer = i; //kanske onödig
+					playerHasPowerup = true;
+					switch (pow.GetPowerupID())
+					{
+					case 1:
+						playerArr[i]->GetPlayerDot().SetSpeed(15.0f);
+						//ligthning
+						break;
+						
+					default:
+						//ligthning
+						break;
+					}
+
+
+				}
+			}
+		}
+		if (playerHasPowerup)
+		{
+			playerPowerTime += dt;
+		}
+		if (playerPowerTime >= 3.0f)
+		{
+			for (int i = 0; i < playerCount; i++)
+			{
+				playerArr[i]->Normalize();
+			}
+			playerHasPowerup = false;
+			playerPowerTime = 0.0f;
+		}
 	}
+
+
+
+
 	else
 	{
 		pausing = true;

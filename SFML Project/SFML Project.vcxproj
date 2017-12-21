@@ -25,6 +25,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Powerups.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dot.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="Kurve.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Powerups.h" />
     <ClInclude Include="State.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

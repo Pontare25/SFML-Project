@@ -117,3 +117,11 @@ bool Player::otherCollision(const sf::FloatRect & box)
 	return playerDot.intersects(box);
 }
 
+void Player::Normalize()
+{
+	playerDot.SetSpeed(10.0f);
+
+
+	//Här kan andra grejer från powerups normaliseras
+}
+

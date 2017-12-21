@@ -43,7 +43,7 @@ public:
 
 	bool otherCollision(const sf::FloatRect & box);
 
-
+	void Normalize();
 
 };
 

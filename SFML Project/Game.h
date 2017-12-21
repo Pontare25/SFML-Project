@@ -1,6 +1,7 @@
 #ifndef Game_h
 #define Game_h
 #include "Player.h"
+#include "Powerups.h"
 //#include "Dot.h"
 #include <SFML/Graphics.hpp>
 #include <string>
@@ -24,6 +25,13 @@ private:
 	sf::Text playerText;
 
 	sf::RectangleShape border;
+	Powerups pow;
+	//sf::Clock powerClock;
+	float powerTime;
+	float playerPowerTime;
+	bool powerupExists;
+	bool playerHasPowerup;
+	int powerPlayer;
 
 	bool pausing;
 
