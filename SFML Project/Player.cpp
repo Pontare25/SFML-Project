@@ -58,7 +58,7 @@ std::string Player::GetName() const
 	return this-> name;
 }
 
-sf::Color Player::GetPlayerColor()
+sf::Color Player::GetPlayerColor() const
 {
 	return this-> playerColor;
 }
@@ -78,14 +78,19 @@ std::string Player::ToString() const
 	return retString;
 }
 
-sf::VertexArray Player::GetKurveArr()
+sf::VertexArray Player::GetKurveArr() const
 {
 	return playerDot.GetKurveArr();
 }
 
-Dot Player::GetPlayerDot()
+Dot Player::GetPlayerDot() const
 {
 	return playerDot;
+}
+
+void Player::SetPlayerSpeed(float newSpeed)
+{
+	playerDot.SetSpeed(newSpeed);
 }
 
 

@@ -14,8 +14,10 @@ void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
 	{
 		t.draw(*playerArr[i]);
 	}
-
-	t.draw(pow);
+	if (powerupExists == true)
+	{
+		t.draw(pow);
+	}
 }
 
 Game::Game()
@@ -73,12 +75,12 @@ Game::Game()
 	border.setOutlineThickness(3.0f);
 	border.setFillColor(sf::Color::Black);
 	
-	powerTime = 0.0f;
-	playerPowerTime = 0.0f;
-	powerupExists = false;
-	playerHasPowerup = false;
-	powerPlayer = -1;
-	pow = Powerups(border);
+	this->powerTime = 0.0f;
+	this->playerPowerTime = 0.0f;
+	this->powerupExists = false;
+	this->playerHasPowerup = false;
+	this->powerPlayer = -1;
+	pow.SetBorder(border);
 }
 
 Game::~Game()
@@ -187,7 +189,7 @@ void Game::otherPlayerCollision()
 	}
 }
 
-std::string Game::GetAllPlayerInfo()
+std::string Game::GetAllPlayerInfo() const
 {
 	std::string retString;
 	for (int i = 0; i < playerCount; i++)
@@ -213,8 +215,7 @@ void Game::Update(float dt)
 		{
 			if (powerupExists == false)
 			{
-				//spawna in en ny powerup
-
+				pow.newPowerup();//spawna in en ny powerup
 				powerupExists = true;
 				powerTime = 0.0f;
 			}
@@ -226,21 +227,29 @@ void Game::Update(float dt)
 			{
 				if (playerArr[i]->otherCollision(pow.GetSpriteBounds()))
 				{
-					powerPlayer = i; //kanske onödig
+					powerPlayer = i;
 					playerHasPowerup = true;
+					powerupExists = false;
 					switch (pow.GetPowerupID())
 					{
-					case 1:
-						playerArr[i]->GetPlayerDot().SetSpeed(15.0f);
-						//ligthning
+					case 1://ligthning
+						playerArr[powerPlayer]->SetPlayerSpeed(15.0f);
 						break;
+
+						case 2: //snail
+						for (int i = 0; i < playerCount; i++)
+						{
+							if (i != powerPlayer)
+							{
+								playerArr[i]->GetPlayerDot().SetSpeed(5.0f);
+							}
+						}
+
 						
-					default:
-						//ligthning
+					default: //ligthning
+						playerArr[i]->GetPlayerDot().SetSpeed(15.0f);
 						break;
 					}
-
-
 				}
 			}
 		}
@@ -258,8 +267,6 @@ void Game::Update(float dt)
 			playerPowerTime = 0.0f;
 		}
 	}
-
-
 
 
 	else

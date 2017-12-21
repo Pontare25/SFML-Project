@@ -1,8 +1,7 @@
 #include "Powerups.h"
 
-Powerups::Powerups(sf::RectangleShape& border)
+Powerups::Powerups()
 {
-	this->border = border;
 	powerupSize = 30.0f;
 	if (!ligthning.loadFromFile("Ligthning.png"))
 	{
@@ -12,15 +11,16 @@ Powerups::Powerups(sf::RectangleShape& border)
 	//ligthningSprite.setTexture(ligthning);
 	rect.setSize({ powerupSize, powerupSize });
 
-	newPowerup();
-}
-
-Powerups::Powerups()
-{
 }
 
 Powerups::~Powerups()
 {
+}
+
+void Powerups::SetBorder(sf::RectangleShape & border)
+{
+	this->border = border;
+	newPowerup();
 }
 
 int Powerups::GetPowerupID()
@@ -41,11 +41,15 @@ void Powerups::newPowerup()
 
 		//case 2: snail
 
+
 		//case 3: inverted controls
 
 		//case 4: pass through kurves
 
+		//case 5: spawn ball
+
 	default:
+		powerUpID = 1;
 		rect.setTexture(&ligthning);
 		break;
 	}

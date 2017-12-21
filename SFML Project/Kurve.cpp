@@ -43,7 +43,7 @@ void Kurve::SetstartPoint(sf::Vector2f startPoint)
 	vArray.append(v);
 }
 
-sf::VertexArray Kurve::GetKurveArray()
+sf::VertexArray Kurve::GetKurveArray() const
 {
 	return vArray;
 }

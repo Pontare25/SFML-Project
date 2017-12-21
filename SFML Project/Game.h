@@ -51,7 +51,7 @@ public:
 	bool PausSegment();
 	void otherPlayerCollision();
 
-	std::string GetAllPlayerInfo();
+	std::string GetAllPlayerInfo() const;
 	void Update(float dt);
 	
 

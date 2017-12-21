@@ -25,18 +25,18 @@ public:
 	Dot(sf:: Color playerColor, sf::Keyboard::Key rightKey,sf::Keyboard::Key leftKey, sf::RectangleShape & border);
 
 	void SetPosition(sf::Vector2f newPosition, float angle= float(rand() % 360 + 50));
-	sf::Vector2f GetPosition();
-	sf::Vector2f GetDirection();
-	float GetSize();
+	sf::Vector2f GetPosition() const;
+	sf::Vector2f GetDirection() const;
+	float GetSize() const;
 	void SetSize(float newSize);
-	float GetSpeed();
+	float GetSpeed() const;
 	void SetSpeed(float newSpeed);
-	float GetAngle();
+	float GetAngle() const;
 	void SetAngle(float newAngle);
 
-	sf::VertexArray GetKurveArr();
+	sf::VertexArray GetKurveArr() const;
 	bool selfIntersect();
-	sf::FloatRect GetDotBounds();
+	sf::FloatRect GetDotBounds() const;
 
 	bool intersects(const sf::FloatRect& box);
 	void Update(float dt);

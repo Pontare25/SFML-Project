@@ -17,10 +17,10 @@ private:
 	sf::RectangleShape border;
 
 public:
-	Powerups(sf::RectangleShape& border);
 	Powerups();
 	~Powerups();
 
+	void SetBorder(sf::RectangleShape& border);
 	int GetPowerupID();
 	void newPowerup();
 

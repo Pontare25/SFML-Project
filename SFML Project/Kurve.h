@@ -25,7 +25,7 @@ public:
 
 	void SetstartPoint(sf::Vector2f startPoint);
 
-	sf::VertexArray GetKurveArray();
+	sf::VertexArray GetKurveArray() const;
 
 	void Update(float dt, sf::Vector2f position);
 	void draw();

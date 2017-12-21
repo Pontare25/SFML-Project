@@ -32,12 +32,14 @@ public:
 	void AddScore();
 
 	std::string GetName() const;
-	sf::Color GetPlayerColor();
+	sf::Color GetPlayerColor() const;
 	int GetScore() const;
 	std::string ToString() const;
-	sf::VertexArray GetKurveArr();
+	sf::VertexArray GetKurveArr() const;
 	
-	Dot GetPlayerDot();
+	Dot GetPlayerDot() const;
+
+	void SetPlayerSpeed(float newSpeed);
 
 	bool checkCollision();
 

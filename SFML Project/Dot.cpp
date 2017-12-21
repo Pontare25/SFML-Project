@@ -31,17 +31,17 @@ void Dot::SetPosition(sf::Vector2f newPosition, float angle)
 	this->angle = angle;
 }
 
-sf::Vector2f Dot::GetPosition()
+sf::Vector2f Dot::GetPosition() const
 {
 	return dot.getPosition();
 }
 
-sf::Vector2f Dot::GetDirection()
+sf::Vector2f Dot::GetDirection() const
 {
 	return this-> direction;
 }
 
-float Dot::GetSize()
+float Dot::GetSize() const
 {
 	return size;
 }
@@ -51,7 +51,7 @@ void Dot::SetSize(float newSize)
 	this->size = newSize;
 }
 
-float Dot::GetSpeed()
+float Dot::GetSpeed() const
 {
 	return this-> speed;
 }
@@ -61,7 +61,7 @@ void Dot::SetSpeed(float newSpeed)
 	this->speed = newSpeed;
 }
 
-float Dot::GetAngle()
+float Dot::GetAngle() const
 {
 	return this->angle;
 }
@@ -71,7 +71,7 @@ void Dot::SetAngle(float newAngle)
 	this->angle = newAngle;
 }
 
-sf::VertexArray Dot::GetKurveArr()
+sf::VertexArray Dot::GetKurveArr() const
 {
 	return kurve.GetKurveArray();
 }
@@ -91,7 +91,7 @@ bool Dot::selfIntersect()
 	return false;
 }
 
-sf::FloatRect Dot::GetDotBounds()
+sf::FloatRect Dot::GetDotBounds() const
 {
 	return dot.getGlobalBounds();
 }
