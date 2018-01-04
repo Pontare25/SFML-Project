@@ -64,7 +64,7 @@ Game::Game()
 	roundText.setPosition(950.0f, 40.0f);
 
 	playerText.setFont(font);
-	playerText.setString("Players\n\n" + GetAllPlayerInfo()); // funkar ej!
+	playerText.setString("Players\n\n" + GetAllPlayerInfo());
 	playerText.setCharacterSize(30);
 	playerText.setColor(sf::Color::Yellow);
 	playerText.setPosition(950.0f, 80.0f);
@@ -81,6 +81,7 @@ Game::Game()
 	this->playerHasPowerup = false;
 	this->powerPlayer = -1;
 	pow.SetBorder(border);
+
 }
 
 Game::~Game()
@@ -147,7 +148,7 @@ void Game::NewRound()
 	}
 }
 
-int Game::WinnerIndex()
+std::string Game::WinnerString()
 {
 	int max = 0;
 	int winnerIndex = -1;
@@ -159,7 +160,12 @@ int Game::WinnerIndex()
 			winnerIndex = i;
 		}
 	}
-	return winnerIndex;
+	return playerArr[winnerIndex]->ToString();
+}
+
+int Game::GetRound()
+{
+	return roundCount;
 }
 
 bool Game::PausSegment()
@@ -236,19 +242,31 @@ void Game::Update(float dt)
 						playerArr[powerPlayer]->SetPlayerSpeed(15.0f);
 						break;
 
-						case 2: //snail
+						case 2: //slow
 						for (int i = 0; i < playerCount; i++)
 						{
 							if (i != powerPlayer)
 							{
-								playerArr[i]->GetPlayerDot().SetSpeed(5.0f);
+								playerArr[i]->SetPlayerSpeed(5.0f);
 							}
 						}
+						break;
 
+						case 3: //inverted keys
+							for (int i = 0; i < playerCount; i++)
+							{
+								if (i != powerPlayer)
+								{
+									playerArr[i]->InvertControls();
+								}
+							}
+							break;
 						
 					default: //ligthning
 						playerArr[i]->GetPlayerDot().SetSpeed(15.0f);
 						break;
+
+						playerPowerTime = 0.0f;
 					}
 				}
 			}
@@ -257,15 +275,16 @@ void Game::Update(float dt)
 		{
 			playerPowerTime += dt;
 		}
-		if (playerPowerTime >= 3.0f)
+		if (playerPowerTime >= 4.0f)
 		{
 			for (int i = 0; i < playerCount; i++)
 			{
 				playerArr[i]->Normalize();
 			}
 			playerHasPowerup = false;
-			playerPowerTime = 0.0f;
+			powerTime = 0.0f;
 		}
+		
 	}
 
 
@@ -283,7 +302,13 @@ void Game::Update(float dt)
 						i = playerCount;
 				}
 			}
-			NewRound(); // Resurrects every player, randomizes new positions and angles
+			NewRound();// Resurrects every player, randomizes new positions and angles
+			for (int i = 0; i < playerCount; i++)
+			{
+				playerArr[i]->Normalize(); //security measure
+			}
+			powerTime = 0.0f;
+			playerPowerTime = 0.0f;
 		}
 	}
 }

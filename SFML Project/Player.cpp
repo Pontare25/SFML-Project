@@ -14,7 +14,9 @@ Player::Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard
 	this->alive = true;
 	this->border = border;
 
-	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x) + 40.0f, float(rand() % int(border.getSize().y) + border.getPosition().y - 40.0f) };
+	hasInvertedControls = -1;
+
+	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x)/2 + border.getPosition().x), float(rand() % int(border.getSize().y)/2 + border.getPosition().y) };
 	playerDot.SetPosition(borderpositioned, float(rand() % 360));
 }
 
@@ -43,7 +45,7 @@ void Player::Kill()
 void Player::Resurrect()
 {
 	alive = true;
-	sf::Vector2f position = { float(rand() % int(border.getSize().x) + border.getPosition().x) + 40.0f, float(rand() % int(border.getSize().y) + border.getPosition().y - 40.0f) }; //slumpar fram en ny position
+	sf::Vector2f position = { float(rand() % int(border.getSize().x)/2 + border.getPosition().x), float(rand() % int(border.getSize().y)/2 + border.getPosition().y) }; //slumpar fram en ny position
 	playerDot.SetPosition(position, float(rand() % 360)); //sätter positionen och slumpar en ny vinkel
 	playerDot.SetSpeed(10.0f);
 }
@@ -126,7 +128,16 @@ void Player::Normalize()
 {
 	playerDot.SetSpeed(10.0f);
 
-
+	/*if (hasInvertedControls == -1)
+	{
+		InvertControls();
+	}*/
 	//Här kan andra grejer från powerups normaliseras
+}
+
+void Player::InvertControls()
+{
+	playerDot.InvertKeys();
+	hasInvertedControls*(-1);
 }
 

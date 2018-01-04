@@ -7,9 +7,11 @@ class Powerups : public sf::Drawable
 {
 private:
 	sf::Texture ligthning;
-	sf::Sprite ligthningSprite;
-	sf::Sprite powerup;
-	const int nrOfPowerups = 1;
+	sf::Texture slow;
+	sf::Texture Inverted;
+	/*sf::Sprite ligthningSprite;
+	sf::Sprite powerup;*/
+	int nrOfPowerups;
 	float powerupSize;
 
 	sf::RectangleShape rect;

@@ -47,7 +47,8 @@ public:
 	bool RoundEnded() const;
 	void ExpandPlayerArr();
 	void NewRound();
-	int WinnerIndex();
+	std::string WinnerString();
+	int GetRound();
 	bool PausSegment();
 	void otherPlayerCollision();
 

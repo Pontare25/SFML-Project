@@ -17,6 +17,7 @@ private:
 	Dot playerDot;
 	sf::RectangleShape bounds;
 	sf::RectangleShape playerDotBounds;
+	int hasInvertedControls;
 
 public:
 	Player(const std::string& name, sf::Keyboard::Key rightKey, sf::Keyboard::Key leftKey, sf::Color playerColor, sf::RectangleShape& border);
@@ -46,6 +47,9 @@ public:
 	bool otherCollision(const sf::FloatRect & box);
 
 	void Normalize();
+
+	void InvertControls();
+
 
 };
 

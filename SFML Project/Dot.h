@@ -42,6 +42,8 @@ public:
 	void Update(float dt);
 	void move(sf::Vector2f distance);
 	void Draw();
+
+	void InvertKeys();
 };
 
 

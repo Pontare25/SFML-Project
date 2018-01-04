@@ -15,7 +15,7 @@ Dot::Dot(sf::Color playerColor, sf::Keyboard::Key rightKey, sf::Keyboard::Key le
 	speed = 10.0f;
 	float angle = float(rand() % 360 + 50);
 
-	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x) + border.getPosition().x) + 40.0f, float(rand() % int(border.getSize().y) + border.getPosition().y - 40.0f) };
+	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x)/2 + border.getPosition().x), float(rand() % int(border.getSize().y)/2 + border.getPosition().y) };
 	dot.setPosition(borderpositioned);
 
 	dot.setFillColor(playerColor);
@@ -132,4 +132,12 @@ void Dot::move(sf::Vector2f distance)
 
 void Dot::Draw()
 {
+}
+
+void Dot::InvertKeys()
+{
+	sf::Keyboard::Key temp;
+	temp = rightKey;
+	rightKey = leftKey;
+	leftKey = temp;
 }
