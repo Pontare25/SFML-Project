@@ -16,11 +16,12 @@ int main()
 	//State* currentState = new Menu();
 
 	/*sf::Clock clock;
-	sf::RenderWindow window(sf::VideoMode(1200, 900), "Achtung Die Kurve");
-	srand(time(0));*/
+	sf::RenderWindow window(sf::VideoMode(1200, 900), "Achtung Die Kurve");*/
+
+	srand(time(0));
 	Game game1;
 
-	cout << "Enter the number of players (minimum of two, maximum of four)\n";
+	cout << "Welcome to Achtung Die Kurve!\nEnter the number of players (minimum of two, maximum of four)\n";
 	int players;
 	cin >> players;
 	cin.ignore();
@@ -71,7 +72,7 @@ int main()
 
 	sf::Clock clock;
 	sf::RenderWindow window(sf::VideoMode(1200, 900), "Achtung Die Kurve");
-	srand(time(0));
+	
 
 	//string name1 = "Pontus";
 	//game1.AddPlayer(name1, sf::Keyboard::Right, sf::Keyboard::Left, sf::Color::Red);
@@ -116,6 +117,11 @@ int main()
 		game1.Update(dt);
 		window.draw(game1);
 		window.display();
+
+	}
+
+	for (int i = 0; i < players; i++)
+	{
 
 	}
 

@@ -152,15 +152,29 @@ std::string Game::WinnerString()
 {
 	int max = 0;
 	int winnerIndex = -1;
+	std::string winnerString = "";
 	for (int i = 0; i < playerCount; i++)
 	{
 		if (playerArr[i]->GetScore() > max)
 		{
 			max = playerArr[i]->GetScore();
 			winnerIndex = i;
+			winnerString = playerArr[winnerIndex]->ToString();
 		}
 	}
-	return playerArr[winnerIndex]->ToString();
+
+	for (int i = 0; i < playerCount; i++)
+	{
+		if (i != winnerIndex)
+		{
+			if (playerArr[i]->GetScore() == max) //Checks if there are multiple winners
+			{
+				winnerString += "\n" + playerArr[i]->ToString();
+			}
+		}
+	}
+	//return playerArr[winnerIndex]->ToString();
+	return winnerString;
 }
 
 int Game::GetRound()
