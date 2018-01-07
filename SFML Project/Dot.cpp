@@ -82,11 +82,11 @@ bool Dot::selfIntersect()
 	sf::VertexArray temp = GetKurveArr();
 	if (temp.getVertexCount() > 10)
 	{
-		for (int i = 0; i < temp.getVertexCount() - 6; i++)
+	for (int i = 0; i < temp.getVertexCount() - 6; i++)  //because of the turnradius it cannot selfintersect with the latest vertices
 		{
 			allButLast.append(temp[i]);
 		}
-		return kurve.intersects(dot.getGlobalBounds(), allButLast);
+		return kurve.intersects(dot.getGlobalBounds(), allButLast); //Dot bounds becomes the "box" later referred
 	}
 	return false;
 }

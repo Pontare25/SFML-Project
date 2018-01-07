@@ -10,6 +10,7 @@ void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
 	}
 	t.draw(roundText);
 	t.draw(playerText);
+
 	for (int i = 0; i < playerCount; i++)
 	{
 		t.draw(*playerArr[i]);
@@ -68,6 +69,18 @@ Game::Game()
 	playerText.setCharacterSize(30);
 	playerText.setColor(sf::Color::Yellow);
 	playerText.setPosition(950.0f, 80.0f);
+
+	//playerText.setFont(font);
+	//playerText.setString("Players\n\n");
+	//playerText.setCharacterSize(30);
+	//playerText.setColor(sf::Color::Yellow);
+	//playerText.setPosition(950.0f, 80.0f);
+
+	//player1.setFont(font);
+	//player1.setString(playerArr[0]->ToString());
+	//player1.setCharacterSize(30);
+	//player1.setColor(playerArr[0]->GetPlayerColor());
+	//player1.setPosition(950.0f, 80.0f);
 
 	border.setSize({ 900.0f, 835.0f });
 	border.setOutlineColor(sf::Color::Yellow);
@@ -231,6 +244,7 @@ void Game::Update(float dt)
 		}
 
 		powerTime += dt;
+
 		if (powerTime >= 3.0f && playerHasPowerup == false)
 		{
 			if (powerupExists == false)
@@ -288,6 +302,7 @@ void Game::Update(float dt)
 		if (playerHasPowerup)
 		{
 			playerPowerTime += dt;
+			powerTime = 0.0f;
 		}
 		if (playerPowerTime >= 4.0f)
 		{
@@ -296,7 +311,7 @@ void Game::Update(float dt)
 				playerArr[i]->Normalize();
 			}
 			playerHasPowerup = false;
-			powerTime = 0.0f;
+			// powerTime = 0.0f;
 		}
 		
 	}

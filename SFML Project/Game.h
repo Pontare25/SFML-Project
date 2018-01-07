@@ -23,6 +23,11 @@ private:
 	sf::Font font3;
 	sf::Text roundText;
 	sf::Text playerText;
+	//sf::Text player1;
+	//sf::Text player2;
+	//sf::Text player3;
+	//sf::Text player4;
+
 
 	sf::RectangleShape border;
 	Powerups pow;

@@ -43,7 +43,7 @@ void Powerups::newPowerup()
 {
 	sf::Vector2f borderpositioned = { float(rand() % int(border.getSize().x)/2 + border.getPosition().x) /*+ powerupSize*/, float(rand() % int(border.getSize().y)/2 + border.getPosition().y /*- powerupSize*/) };
 	rect.setPosition(borderpositioned);
-	powerUpID = (rand() % nrOfPowerups + 1);
+	powerUpID = ((rand() % nrOfPowerups)+1);
 	switch (powerUpID)
 	{
 		case 1: //ligthning

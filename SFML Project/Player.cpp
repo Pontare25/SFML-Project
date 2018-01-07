@@ -132,6 +132,8 @@ void Player::Normalize()
 	{
 		InvertControls();
 	}*/
+	
+	
 	//Här kan andra grejer från powerups normaliseras
 }
 
