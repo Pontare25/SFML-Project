@@ -76,7 +76,7 @@ int main()
 
 	//string name1 = "Pontus";
 	//game1.AddPlayer(name1, sf::Keyboard::Right, sf::Keyboard::Left, sf::Color::Red);
-	//string name2 = "Ludvig";
+	//string name2 = "Jim";
 	//game1.AddPlayer(name2, sf::Keyboard::D, sf::Keyboard::A, sf::Color::Green);
 	///*string name3 = "Eric";
 	//game1.AddPlayer(name3, sf::Keyboard::L, sf::Keyboard::K, sf::Color::Blue);*/

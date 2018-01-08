@@ -157,7 +157,7 @@ void Game::NewRound()
 	roundCount++;
 	for (int i = 0; i < playerCount; i++)
 	{
-		playerArr[i]->Resurrect(); 	//alive = true, nya positioner och vinklar slumpas
+		playerArr[i]->Resurrect(); 	//alive = true, new positions and angles are randomized
 	}
 }
 
